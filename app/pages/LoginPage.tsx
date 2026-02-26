@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Container,
   Box,
@@ -38,6 +39,7 @@ import {
 import type { LoginCredentials } from '~/types';
 
 export default function LoginPage() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
@@ -97,20 +99,20 @@ export default function LoginPage() {
     const errors: Record<string, string> = {};
     
     if (!formData.userId.trim()) {
-      errors.userId = 'Please enter your user ID.';
+      errors.userId = t('auth.errors.userIdRequired');
     } else if (formData.userId.length > 8) {
-      errors.userId = 'User ID must be 8 characters or less.';
+      errors.userId = t('auth.errors.userIdMaxLength');
     }
 
     if (!formData.password.trim()) {
-      errors.password = 'Please enter your password.';
+      errors.password = t('auth.errors.passwordRequired');
     } else if (formData.password.length > 8) {
-      errors.password = 'Password must be 8 characters or less.';
+      errors.password = t('auth.errors.passwordMaxLength');
     }
     
     setFieldErrors(errors);
     return Object.keys(errors).length === 0;
-  }, [formData]);
+  }, [formData, t]);
 
   const handleInputChange = useCallback((field: keyof LoginCredentials) => (
     event: React.ChangeEvent<HTMLInputElement>
@@ -150,11 +152,11 @@ export default function LoginPage() {
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     if (event.key === 'F3' || event.key === 'Escape') {
       event.preventDefault();
-      if (window.confirm('Are you sure you want to exit the system?')) {
+      if (window.confirm(t('common.messages.confirmExit'))) {
         window.close();
       }
     }
-  }, []);
+  }, [t]);
 
   const handleAlertClose = useCallback(() => {
     dispatch(clearError());
@@ -162,10 +164,10 @@ export default function LoginPage() {
 
   const getErrorMessage = (error: string) => {
     const errorMappings: Record<string, string> = {
-      'Invalid credentials': 'Incorrect credentials. Please try again.',
-      'User not found': 'User not found. Please verify your ID.',
-      'Please check your input': 'Please check your user ID and password.',
-      'Network error occurred': 'Unable to verify credentials. Check your connection.',
+      'Invalid credentials': t('auth.errors.incorrectCredentials'),
+      'User not found': t('auth.errors.userNotFound'),
+      'Please check your input': t('auth.errors.checkCredentials'),
+      'Network error occurred': t('auth.errors.connectionError'),
     };
    
     return errorMappings[error] || error;
@@ -177,10 +179,10 @@ export default function LoginPage() {
       <Container maxWidth="md" sx={{ py: 4 }}>
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="h5" gutterBottom>
-            Redirecting...
+            {t('common.messages.redirecting')}
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            You are already signed in. Redirecting to your dashboard.
+            {t('common.messages.alreadySignedIn')}
           </Typography>
         </Box>
       </Container>
@@ -209,7 +211,7 @@ export default function LoginPage() {
               zIndex: 10,
             }}
           >
-            <Tooltip title="View documentation" arrow>
+            <Tooltip title={t('auth.login.viewDocs')} arrow>
               <IconButton
                 onClick={handleOpenDocs}
                 size="small"
@@ -250,10 +252,10 @@ export default function LoginPage() {
           >
             <CreditCard sx={{ fontSize: 48, mb: 2 }} />
             <Typography variant="h4" fontWeight={600} gutterBottom>
-              NATIONAL RESERVE NOTE
+              {t('auth.login.bankNote1')}
             </Typography>
             <Typography variant="h6" sx={{ opacity: 0.9 }}>
-              THE UNITED STATES OF KICSLAND
+              {t('auth.login.bankNote2')}
             </Typography>
             
             {/* ✅ CORRECCIÓN PRINCIPAL: Billete ASCII con espacios preservados */}
@@ -296,7 +298,7 @@ export default function LoginPage() {
               gutterBottom
               sx={{ mb: 3 }}
             >
-              Enter your User ID and password, then press ENTER:
+              {t('auth.login.subtitle')}
             </Typography>
 
             <Box
@@ -306,11 +308,11 @@ export default function LoginPage() {
             >
               <Stack spacing={3}>
                 <TextField
-                  label="User ID"
+                  label={t('auth.login.userIdLabel')}
                   value={formData.userId}
                   onChange={handleInputChange('userId')}
                   error={!!fieldErrors.userId}
-                  helperText={fieldErrors.userId || '(Max 8 characters)'}
+                  helperText={fieldErrors.userId || t('auth.login.userIdMaxLength')}
                   disabled={isLoading}
                   autoFocus
                   inputProps={{
@@ -332,12 +334,12 @@ export default function LoginPage() {
                 />
 
                 <TextField
-                  label="Password"
+                  label={t('auth.login.passwordLabel')}
                   type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={handleInputChange('password')}
                   error={!!fieldErrors.password}
-                  helperText={fieldErrors.password || '(Max 8 characters)'}
+                  helperText={fieldErrors.password || t('auth.login.userIdMaxLength')}
                   disabled={isLoading}
                   autoComplete="current-password"
                   inputProps={{
@@ -384,7 +386,7 @@ export default function LoginPage() {
                         severity="error"
                         sx={{ borderRadius: 2 }}
                       >
-                        Please correct the errors above.
+                        {t('auth.errors.correctErrors')}
                       </Alert>
                     )}
                   </>
@@ -417,7 +419,7 @@ export default function LoginPage() {
                     },
                   }}
                 >
-                  {isLoading ? 'Signing in...' : 'ENTER = Sign in'}
+                  {isLoading ? t('auth.login.signingIn') : t('common.keyboard.enterSignIn')}
                 </Button>
               </Stack>
             </Box>
@@ -426,7 +428,7 @@ export default function LoginPage() {
 
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="body2" color="text.secondary" gutterBottom>
-                Sample credentials:
+                {t('auth.login.sampleCredentials')}
               </Typography>
               <Stack direction="row" spacing={2} justifyContent="center" flexWrap="wrap">
                 <Typography variant="caption" sx={{ 
@@ -436,7 +438,7 @@ export default function LoginPage() {
                   py: 0.5,
                   borderRadius: 1,
                 }}>
-                  Admin: ADMIN001 / PASSWORD
+                  {t('auth.login.adminCreds')}
                 </Typography>
                 <Typography variant="caption" sx={{ 
                   bgcolor: 'success.main', 
@@ -445,7 +447,7 @@ export default function LoginPage() {
                   py: 0.5,
                   borderRadius: 1,
                 }}>
-                  Back-Office: USER001 / PASSWORD
+                  {t('auth.login.userCreds')}
                 </Typography>
               </Stack>
             </Box>
@@ -460,7 +462,7 @@ export default function LoginPage() {
             }}
           >
             <Typography variant="body2" color="text.secondary">
-              ENTER = Sign in • F3 = Exit
+              {t('common.keyboard.enterSignIn')} • {t('common.keyboard.f3Exit')}
             </Typography>
           </Box>
         </Paper>

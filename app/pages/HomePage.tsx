@@ -7,9 +7,12 @@ import {
   Stack,
 } from "@mui/material";
 import { Home as HomeIcon, Dashboard } from "@mui/icons-material";
+import { useTranslation } from 'react-i18next';
 import { ThemeToggle } from "~/components/ui/ThemeToggle";
 
 export default function HomePage() {
+  const { t } = useTranslation();
+  
   return (
     <Container maxWidth="lg">
       <Box sx={{ py: 4 }}>
@@ -22,7 +25,7 @@ export default function HomePage() {
           }}
         >
           <Typography variant="h3" component="h1" fontWeight={700}>
-            React SPA Application
+            {t('home.title')}
           </Typography>
           <ThemeToggle />
         </Box>
@@ -44,10 +47,10 @@ export default function HomePage() {
               }}
             />
             <Typography variant="h4" gutterBottom>
-              Application Ready for Development
+              {t('home.readyTitle')}
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              Clean React 18.3.1 SPA with React Router v6, Redux Toolkit, Material-UI, and MSW configured for authenticated users only.
+              {t('home.readyDescription')}
             </Typography>
             <Button
               variant="contained"
@@ -55,13 +58,13 @@ export default function HomePage() {
               startIcon={<Dashboard />}
               sx={{ mt: 2 }}
             >
-              Start Building
+              {t('common.buttons.startBuilding')}
             </Button>
           </Paper>
 
           <Paper elevation={1} sx={{ p: 3, borderRadius: 2 }}>
             <Typography variant="h6" gutterBottom>
-              Tech Stack Configured
+              {t('home.techStackTitle')}
             </Typography>
             <Box
               sx={{
