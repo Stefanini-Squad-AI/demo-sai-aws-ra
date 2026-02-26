@@ -1,0 +1,269 @@
+{
+  "common": {
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "add": "Add",
+      "search": "Search",
+      "submit": "Submit",
+      "back": "Back",
+      "next": "Next",
+      "previous": "Previous",
+      "home": "Home",
+      "logout": "Logout",
+      "login": "Sign in",
+      "exit": "Exit",
+      "continue": "Continue",
+      "confirm": "Confirm",
+      "close": "Close",
+      "view": "View",
+      "update": "Update",
+      "startBuilding": "Start Building"
+    },
+    "labels": {
+      "loading": "Loading...",
+      "searching": "Searching...",
+      "saving": "Saving...",
+      "deleting": "Deleting...",
+      "processing": "Processing...",
+      "noData": "No data available",
+      "notFound": "Not found",
+      "error": "Error",
+      "success": "Success",
+      "warning": "Warning",
+      "info": "Information",
+      "yes": "Yes",
+      "no": "No",
+      "active": "Active",
+      "inactive": "Inactive",
+      "unknown": "Unknown",
+      "na": "N/A",
+      "page": "Page",
+      "of": "of",
+      "member": "Member",
+      "status": "Status"
+    },
+    "keyboard": {
+      "enter": "ENTER",
+      "f3": "F3",
+      "f7": "F7",
+      "f8": "F8",
+      "enterSubmit": "ENTER = Submit",
+      "enterContinue": "ENTER = Continue",
+      "enterSearch": "ENTER = Search",
+      "enterSignIn": "ENTER = Sign in",
+      "f3Back": "F3 = Back",
+      "f3Exit": "F3 = Exit",
+      "f7Backward": "F7 = Backward",
+      "f8Forward": "F8 = Forward",
+      "fullNav": "ENTER = Continue • F3 = Back • F7 = Backward • F8 = Forward"
+    },
+    "messages": {
+      "confirmExit": "Are you sure you want to exit the system?",
+      "pleaseWait": "Please wait...",
+      "redirecting": "Redirecting...",
+      "alreadySignedIn": "You are already signed in. Redirecting to your dashboard."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Enter your User ID and password, then press ENTER:",
+      "userIdLabel": "User ID",
+      "userIdMaxLength": "(Max 8 characters)",
+      "passwordLabel": "Password",
+      "signingIn": "Signing in...",
+      "viewDocs": "View documentation",
+      "sampleCredentials": "Sample credentials:",
+      "adminCreds": "Admin: ADMIN001 / PASSWORD",
+      "userCreds": "Back-Office: USER001 / PASSWORD",
+      "bankNote1": "NATIONAL RESERVE NOTE",
+      "bankNote2": "THE UNITED STATES OF KICSLAND"
+    },
+    "errors": {
+      "userIdRequired": "Please enter your user ID.",
+      "userIdMaxLength": "User ID must be 8 characters or less.",
+      "passwordRequired": "Please enter your password.",
+      "passwordMaxLength": "Password must be 8 characters or less.",
+      "correctErrors": "Please correct the errors above.",
+      "incorrectCredentials": "Incorrect credentials. Please try again.",
+      "userNotFound": "User not found. Please verify your ID.",
+      "checkCredentials": "Please check your user ID and password.",
+      "connectionError": "Unable to verify credentials. Check your connection."
+    }
+  },
+  "home": {
+    "title": "React SPA Application",
+    "readyTitle": "Application Ready for Development",
+    "readyDescription": "Clean React 18.3.1 SPA with React Router v6, Redux Toolkit, Material-UI, and MSW configured for authenticated users only.",
+    "techStackTitle": "Tech Stack Configured"
+  },
+  "menu": {
+    "main": {
+      "title": "Main Menu",
+      "viewAccount": "View Account",
+      "updateAccount": "Update Account",
+      "listCards": "List Credit Cards",
+      "listTransactions": "List Transactions",
+      "addTransaction": "Add Transaction",
+      "viewTransaction": "View Transaction",
+      "transactionReports": "Transaction Reports",
+      "billPayment": "Bill Payment"
+    },
+    "admin": {
+      "title": "Admin Menu",
+      "userManagement": "User Management",
+      "addUser": "Add User",
+      "updateUser": "Update User",
+      "deleteUser": "Delete User",
+      "listUsers": "List Users",
+      "systemSettings": "System Settings"
+    }
+  },
+  "account": {
+    "view": {
+      "title": "CardDemo - Account Viewer",
+      "subtitle": "View Account Details",
+      "pageTitle": "View Account",
+      "accountNumber": "Account Number:",
+      "showTestAccounts": "Show Test Accounts",
+      "hideTestAccounts": "Hide Test Accounts",
+      "testAccountsTitle": "Test Accounts (Development Only)",
+      "showSensitiveData": "Show Sensitive Data",
+      "hideSensitiveData": "Hide Sensitive Data",
+      "accountInfo": "Account Information",
+      "financialInfo": "Financial Information",
+      "customerOverview": "Customer Overview",
+      "contactInfo": "Contact & Personal Information",
+      "opened": "Opened:",
+      "expiry": "Expiry:",
+      "reissue": "Reissue:",
+      "accountGroup": "Account Group:",
+      "cardNumber": "Card Number:",
+      "creditLimit": "Credit Limit:",
+      "cashCreditLimit": "Cash Credit Limit:",
+      "currentBalance": "Current Balance:",
+      "currentCycleCredit": "Current Cycle Credit:",
+      "currentCycleDebit": "Current Cycle Debit:",
+      "customerId": "Customer ID:",
+      "ssn": "SSN:",
+      "dateOfBirth": "Date of Birth:",
+      "ficoScore": "FICO Score:",
+      "primaryCardHolder": "Primary Card Holder:",
+      "fullName": "Full Name",
+      "phone1": "Phone 1:",
+      "phone2": "Phone 2:",
+      "governmentId": "Government ID:",
+      "eftAccountId": "EFT Account ID:",
+      "address": "Address",
+      "streetAddress": "Street Address:",
+      "city": "City:",
+      "state": "State:",
+      "zipCode": "ZIP Code:",
+      "country": "Country:",
+      "testAccount1": "Active - John Smith - Premium",
+      "testAccount2": "Inactive - Jane Doe - Standard",
+      "testAccount3": "High Balance - Robert Johnson - Platinum",
+      "testAccount4": "New Account - Maria Garcia - Basic"
+    },
+    "update": {
+      "title": "Update Account",
+      "subtitle": "Modify Account Information"
+    },
+    "errors": {
+      "accountNotProvided": "Account number not provided",
+      "accountInvalid": "Account number must be a non zero 11 digit number"
+    }
+  },
+  "creditCard": {
+    "list": {
+      "title": "Credit Cards",
+      "subtitle": "List All Cards",
+      "addCard": "Add Card",
+      "cardNumber": "Card Number",
+      "cardHolder": "Card Holder",
+      "expiryDate": "Expiry Date",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "view": {
+      "title": "Card Details",
+      "subtitle": "View Card Information"
+    },
+    "update": {
+      "title": "Update Card",
+      "subtitle": "Modify Card Information"
+    }
+  },
+  "transaction": {
+    "list": {
+      "title": "List Transactions",
+      "subtitle": "CardDemo - Transaction Management",
+      "pageTitle": "Search Transaction",
+      "searchLabel": "Search Tran ID",
+      "searchHelper": "Enter numeric Transaction ID",
+      "searchPlaceholder": "Enter Transaction ID",
+      "selHeader": "Sel",
+      "transactionIdHeader": "Transaction ID",
+      "dateHeader": "Date",
+      "descriptionHeader": "Description",
+      "amountHeader": "Amount",
+      "loadingTransactions": "Loading transactions...",
+      "noTransactions": "No transactions found",
+      "viewDetails": "View Details",
+      "selectionPlaceholder": "S",
+      "selectionInstructions": "Type 'S' to View Transaction details from the list"
+    },
+    "view": {
+      "title": "Transaction Details",
+      "subtitle": "View Transaction Information"
+    },
+    "add": {
+      "title": "Add Transaction",
+      "subtitle": "Create New Transaction"
+    },
+    "reports": {
+      "title": "Transaction Reports",
+      "subtitle": "View Analytics and Reports"
+    }
+  },
+  "user": {
+    "list": {
+      "title": "User List",
+      "subtitle": "Manage Users",
+      "userId": "User ID",
+      "userName": "Name",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "add": {
+      "title": "Add User",
+      "subtitle": "Create New User"
+    },
+    "update": {
+      "title": "Update User",
+      "subtitle": "Modify User Information"
+    },
+    "delete": {
+      "title": "Delete User",
+      "subtitle": "Remove User from System",
+      "confirmMessage": "Are you sure you want to delete this user?"
+    }
+  },
+  "billPayment": {
+    "title": "Bill Payment",
+    "subtitle": "Pay Your Bills"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "message": "The page you are looking for does not exist.",
+    "goHome": "Go to Home"
+  },
+  "header": {
+    "home": "Home",
+    "logout": "Logout"
+  }
+}

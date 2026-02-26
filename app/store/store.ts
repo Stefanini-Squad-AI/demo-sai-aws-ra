@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import type { Action, ThunkAction, PayloadAction } from "@reduxjs/toolkit";
 import authReducer from "~/features/auth/authSlice";
+import localeReducer from "~/features/locale/localeSlice";
 
 interface AppState {
   initialized: boolean;
@@ -41,6 +42,7 @@ export const store = configureStore({
   reducer: {
     app: appSlice.reducer,
     auth: authReducer,
+    locale: localeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

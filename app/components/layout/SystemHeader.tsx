@@ -13,13 +13,17 @@ import {
   ExitToApp,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { 
   logoutUser, 
   selectCurrentUser, 
   selectIsAuthenticated 
 } from '~/features/auth/authSlice';
+import { selectLanguage } from '~/features/locale/localeSlice';
 import { formatDate } from '~/utils';
+import { getIntlLocale } from '~/utils/locale';
+import { LanguageSelector } from '~/components/ui/LanguageSelector';
 
 interface SystemHeaderProps {
   transactionId: string;
@@ -36,12 +40,15 @@ export function SystemHeader({
   subtitle,
   showNavigation = true,
 }: SystemHeaderProps) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const language = useAppSelector(selectLanguage);
   const currentDate = new Date();
+  const locale = getIntlLocale(language);
 
   const handleHomeClick = () => {
     if (user?.role === 'admin') {
@@ -119,17 +126,20 @@ export function SystemHeader({
             
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center' }}>
               <Chip
-                label={formatDate(currentDate)}
+                label={formatDate(currentDate, locale)}
                 size="small"
                 variant="filled"
                 sx={{ bgcolor: 'info.main', color: 'info.contrastText' }}
               />
               <Chip
-                label={currentDate.toLocaleTimeString()}
+                label={currentDate.toLocaleTimeString(locale)}
                 size="small"
                 variant="filled"
                 sx={{ bgcolor: 'success.main', color: 'success.contrastText' }}
               />
+              
+              {/* Language selector - always visible */}
+              <LanguageSelector />
               
               {/* Solo mostrar botones si está autenticado */}
               {shouldShowNavigation && (
@@ -141,7 +151,7 @@ export function SystemHeader({
                     onClick={handleHomeClick}
                     sx={{ borderRadius: 2 }}
                   >
-                    Home
+                    {t('header.home')}
                   </Button>
                   <Button
                     size="small"
@@ -151,7 +161,7 @@ export function SystemHeader({
                     onClick={handleLogout}
                     sx={{ borderRadius: 2 }}
                   >
-                    Logout
+                    {t('header.logout')}
                   </Button>
                 </Stack>
               )}

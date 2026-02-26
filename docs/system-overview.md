@@ -12,7 +12,7 @@
 - **Reutilización de Código**: 80% componentes reutilizables
 - **Componentes UI**: 15+ componentes disponibles
 - **Cobertura API**: 100% endpoints documentados
-- **Idiomas Soportados**: 1 (Inglés - expansible)
+- **Idiomas Soportados**: 2 (Inglés, Português BR - con sistema i18n expansible)
 - **Mock Data**: 10 cuentas, 10 tarjetas, 50+ transacciones
 
 ---
@@ -28,6 +28,7 @@
 - **Build Tool**: Vite 5.2.10
 - **Testing/Mocking**: MSW (Mock Service Worker) 2.2.13
 - **Deployment**: Docker + Nginx
+- **Internationalization**: react-i18next con soporte para EN y PT-BR
 
 ### Patrones Arquitectónicos
 
@@ -38,6 +39,7 @@
 - **Data Fetching**: API services con tipos TypeScript
 - **Mocking**: MSW para desarrollo local sin backend
 - **Deployment Base Path**: Configurable (`/demo-sai-3-aws/` en producción)
+- **i18n**: Sistema de traducción completo con persistencia de preferencia de idioma
 
 ### Diagrama de Arquitectura
 
@@ -484,52 +486,84 @@ interface BillPayment {
 
 ## 🔄 Estructura de Internacionalización (i18n)
 
-### Estado Actual
+### Estado Actual: ✅ Implementado
 
-**Nota**: El proyecto actualmente **NO** implementa internacionalización. Todos los textos están en inglés directamente en los componentes.
+El proyecto **implementa completamente** internacionalización con soporte para **Inglés (EN)** y **Português Brasil (PT-BR)**.
 
-### Estructura Recomendada para Futura Implementación
+### Tecnología
 
-Si se requiere internacionalización en el futuro, se recomienda:
+- **Librería**: react-i18next + i18next + i18next-browser-languagedetector
+- **Persistencia**: localStorage (clave: `sai-language`)
+- **Estado Global**: Redux slice dedicado (`features/locale/localeSlice.ts`)
+- **Detección**: Automática desde localStorage o navegador
+
+### Estructura Implementada
 
 ```
 app/
 ├── i18n/
-│   ├── index.ts              # Configuración de i18n
+│   ├── config.ts             # Configuración de i18next
 │   ├── locales/
-│   │   ├── en.json           # Inglés
-│   │   ├── es.json           # Español
-│   │   └── pt-BR.json        # Portugués Brasil
+│   │   ├── en.json           # Inglés (269 líneas)
+│   │   └── pt-BR.json        # Português Brasil (269 líneas)
+├── features/
+│   └── locale/
+│       └── localeSlice.ts    # Redux slice para idioma
+├── hooks/
+│   └── useLocale.ts          # Hook para cambio de idioma
+├── utils/
+│   └── locale.ts             # Utilidades de mapeo de locale
+└── components/
+    └── ui/
+        └── LanguageSelector.tsx  # Selector de idioma UI
 ```
 
-**Estructura de Claves Recomendada**:
+### Cobertura de Traducción
+
+- ✅ **19 páginas** totalmente traducidas
+- ✅ **21+ componentes** con i18n integrado
+- ✅ **300+ cadenas** de texto traducidas
+- ✅ **Mensajes de error** y validación
+- ✅ **Etiquetas de formulario** y placeholders
+- ✅ **Botones** y acciones
+- ✅ **Atajos de teclado** localizados
+
+### Estructura de Claves
 
 ```json
 {
   "common": {
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "edit": "Edit"
+    "buttons": { "save": "Save/Salvar", "cancel": "Cancel/Cancelar", ... },
+    "labels": { "loading": "Loading.../Carregando...", ... },
+    "keyboard": { "enterSubmit": "ENTER = Submit/Enviar", ... }
   },
-  "pages": {
-    "account": {
-      "viewTitle": "Account Details",
-      "updateTitle": "Update Account"
-    },
-    "creditCard": {
-      "listTitle": "Credit Cards",
-      "addTitle": "Add New Card"
-    }
+  "auth": {
+    "login": { "title": "Sign In/Entrar", ... },
+    "errors": { "userIdRequired": "...", ... }
   },
-  "forms": {
-    "validation": {
-      "required": "This field is required",
-      "invalidFormat": "Invalid format"
-    }
-  }
+  "account": {
+    "view": { "title": "CardDemo - Account Viewer/Visualizador de Conta", ... },
+    "update": { ... }
+  },
+  "transaction": { "list": { ... }, "add": { ... } },
+  "creditCard": { "list": { ... }, "view": { ... } },
+  "user": { "list": { ... }, "add": { ... } },
+  "menu": { "main": { ... }, "admin": { ... } }
 }
 ```
+
+### Formateo por Locale
+
+- **Fechas**: `formatDate(date, locale)` - dd/MM/yyyy (PT-BR), MM/dd/yyyy (EN)
+- **Moneda**: `formatCurrency(amount, currency, locale)` - R$ (PT-BR), $ (EN)
+- **Números**: `formatNumber(num, locale)` - separadores según región
+
+### Selector de Idioma
+
+- **Ubicación**: SystemHeader (visible en todas las páginas autenticadas)
+- **Icono**: 🌍 Language
+- **Opciones**: 🇺🇸 English, 🇧🇷 Português (BR)
+- **Persistencia**: Automática en localStorage
 
 ---
 

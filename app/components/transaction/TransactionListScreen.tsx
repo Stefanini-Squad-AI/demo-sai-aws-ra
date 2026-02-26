@@ -33,6 +33,7 @@ import {
   CalendarToday as DateIcon,
   Info as InfoIcon,
 } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 import { SystemHeader } from '~/components/layout/SystemHeader';
 import { useTransactionList } from '~/hooks/useTransactionList';
 
@@ -45,6 +46,7 @@ export function TransactionListScreen({
   onTransactionSelect, 
   onError 
 }: TransactionListScreenProps) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [selectionInputs, setSelectionInputs] = useState<Record<string, string>>({});
 
@@ -117,8 +119,8 @@ export function TransactionListScreen({
         <SystemHeader
           transactionId="CT00"
           programName="COTRN00C"
-          title="List Transactions"
-          subtitle="CardDemo - Transaction Management"
+          title={t('transaction.list.title')}
+          subtitle={t('transaction.list.subtitle')}
         />
 
         <Paper
@@ -140,11 +142,11 @@ export function TransactionListScreen({
           >
             <ReceiptIcon sx={{ fontSize: 48, mb: 2 }} />
             <Typography variant="h5" fontWeight={600}>
-              List Transactions
+              {t('transaction.list.pageTitle')}
             </Typography>
             <Stack direction="row" spacing={2} justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
               <Chip
-                label={`Page: ${currentPage}`}
+                label={t('transaction.list.page', { page: currentPage })}
                 variant="filled"
                 sx={{ 
                   bgcolor: 'rgba(255,255,255,0.2)', 
@@ -160,18 +162,18 @@ export function TransactionListScreen({
             <Box sx={{ mb: 4 }}>
               <Typography variant="h6" color="primary.main" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <SearchIcon />
-                Search Transaction
+                {t('transaction.list.searchTransaction')}
               </Typography>
               
               <Stack direction="row" spacing={2} alignItems="flex-start">
                 <TextField
-                  label="Search Tran ID"
+                  label={t('transaction.list.searchTranId')}
                   value={searchTransactionId}
                   onChange={(e) => handleSearchChange(e.target.value)}
                   error={!!validationErrors.searchTransactionId}
-                  helperText={validationErrors.searchTransactionId || 'Enter numeric Transaction ID'}
+                  helperText={validationErrors.searchTransactionId || t('transaction.list.enterTransactionId')}
                   disabled={loading}
-                  placeholder="Enter Transaction ID"
+                  placeholder={t('transaction.list.enterTransactionIdPlaceholder')}
                   inputProps={{ 
                     maxLength: 16,
                     style: { fontFamily: 'monospace' }
@@ -197,7 +199,7 @@ export function TransactionListScreen({
                   startIcon={<SearchIcon />}
                   sx={{ borderRadius: 2, px: 3, py: 1.5 }}
                 >
-                  Search
+                  {t('common.search')}
                 </Button>
               </Stack>
             </Box>
@@ -216,27 +218,27 @@ export function TransactionListScreen({
                 <TableHead>
                   <TableRow>
                     <TableCell sx={{ fontWeight: 600, bgcolor: 'primary.main', color: 'primary.contrastText' }}>
-                      Sel
+                      {t('transaction.list.sel')}
                     </TableCell>
                     <TableCell sx={{ fontWeight: 600, bgcolor: 'primary.main', color: 'primary.contrastText' }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <ReceiptIcon fontSize="small" />
-                        Transaction ID
+                        {t('transaction.list.transactionId')}
                       </Box>
                     </TableCell>
                     <TableCell sx={{ fontWeight: 600, bgcolor: 'primary.main', color: 'primary.contrastText' }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <DateIcon fontSize="small" />
-                        Date
+                        {t('transaction.list.date')}
                       </Box>
                     </TableCell>
                     <TableCell sx={{ fontWeight: 600, bgcolor: 'primary.main', color: 'primary.contrastText' }}>
-                      Description
+                      {t('transaction.list.description')}
                     </TableCell>
                     <TableCell sx={{ fontWeight: 600, bgcolor: 'primary.main', color: 'primary.contrastText', textAlign: 'right' }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'flex-end' }}>
                         <MoneyIcon fontSize="small" />
-                        Amount
+                        {t('transaction.list.amount')}
                       </Box>
                     </TableCell>
                   </TableRow>
@@ -246,7 +248,7 @@ export function TransactionListScreen({
                     <TableRow>
                       <TableCell colSpan={5} sx={{ textAlign: 'center', py: 4 }}>
                         <Typography variant="body1" color="text.secondary">
-                          {loading ? 'Loading transactions...' : 'No transactions found'}
+                          {loading ? t('transaction.list.loadingTransactions') : t('transaction.list.noTransactions')}
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -266,7 +268,7 @@ export function TransactionListScreen({
                               value={selectionInputs[transaction.transactionId] || ''}
                               onChange={(e) => handleSelectionChange(transaction.transactionId, e.target.value)}
                               error={!!validationErrors[`selection_${transaction.transactionId}`]}
-                              placeholder="S"
+                              placeholder={t('transaction.list.selectionPlaceholder')}
                               inputProps={{ 
                                 maxLength: 1,
                                 style: { 
@@ -277,7 +279,7 @@ export function TransactionListScreen({
                               }}
                               sx={{ width: 60 }}
                             />
-                            <Tooltip title="View Details">
+                            <Tooltip title={t('transaction.list.viewDetails')}>
                               <IconButton
                                 size="small"
                                 onClick={() => handleSelectionSubmit(transaction.transactionId)}
@@ -332,7 +334,7 @@ export function TransactionListScreen({
               sx={{ mb: 3, borderRadius: 2 }}
               icon={<InfoIcon />}
             >
-              Type 'S' to View Transaction details from the list
+              {t('transaction.list.instructions')}
             </Alert>
 
             {/* Error Display */}
@@ -351,7 +353,7 @@ export function TransactionListScreen({
                 startIcon={<PrevIcon />}
                 sx={{ borderRadius: 2, px: 3 }}
               >
-                F7 = Backward
+                {t('common.f7Backward')}
               </Button>
               
               <Button
@@ -361,7 +363,7 @@ export function TransactionListScreen({
                 startIcon={<NextIcon />}
                 sx={{ borderRadius: 2, px: 3 }}
               >
-                F8 = Forward
+                {t('common.f8Forward')}
               </Button>
               
               <Button
@@ -372,7 +374,7 @@ export function TransactionListScreen({
                 startIcon={<ExitIcon />}
                 sx={{ borderRadius: 2, px: 3 }}
               >
-                F3 = Back
+                {t('common.f3Back')}
               </Button>
             </Stack>
           </Box>
@@ -387,7 +389,7 @@ export function TransactionListScreen({
             }}
           >
             <Typography variant="body2" color="text.secondary">
-              ENTER = Continue • F3 = Back • F7 = Backward • F8 = Forward
+              {t('transaction.list.footer')}
             </Typography>
           </Box>
         </Paper>

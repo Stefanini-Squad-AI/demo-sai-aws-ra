@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "~/store/hooks";
 import { selectIsAuthenticated, selectCurrentUser } from "~/features/auth/authSlice";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export function meta() {
   return [
@@ -16,6 +17,7 @@ export function meta() {
 }
 
 export default function NotFoundPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const user = useAppSelector(selectCurrentUser);
@@ -61,7 +63,7 @@ export default function NotFoundPage() {
             404
           </Typography>
           <Typography variant="h5" gutterBottom>
-            Redirecting...
+            {t('notFound.message')}
           </Typography>
         </Paper>
       </Box>

@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Provider as ReduxProvider, useDispatch } from "react-redux";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+import { I18nextProvider } from 'react-i18next';
+import i18n from '~/i18n/config';
 import { store } from "~/store/store";
 import { lightTheme, darkTheme } from "~/theme/theme";
 import { validateToken } from "~/features/auth/authSlice";
+import { initializeLocale } from "~/features/locale/localeSlice";
 
 type ThemeMode = 'light' | 'dark' | 'system';
 
@@ -45,6 +48,10 @@ function AuthInitializer({ children }: { children: React.ReactNode }) {
           console.error('❌ Auth initialization failed:', error);
         }
       }
+      
+      // Initialize locale
+      dispatch(initializeLocale());
+      
       setIsInitialized(true);
     };
 
@@ -117,14 +124,16 @@ export function AppProviders({ children }: AppProvidersProps) {
 
   return (
     <ReduxProvider store={store}>
-      <AuthInitializer>
-        <ThemeContext.Provider value={themeContextValue}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-          </ThemeProvider>
-        </ThemeContext.Provider>
-      </AuthInitializer>
+      <I18nextProvider i18n={i18n}>
+        <AuthInitializer>
+          <ThemeContext.Provider value={themeContextValue}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              {children}
+            </ThemeProvider>
+          </ThemeContext.Provider>
+        </AuthInitializer>
+      </I18nextProvider>
     </ReduxProvider>
   );
 }
