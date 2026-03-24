@@ -1,0 +1,269 @@
+{
+  "common": {
+    "buttons": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "add": "Agregar",
+      "search": "Buscar",
+      "submit": "Enviar",
+      "back": "Atrás",
+      "next": "Siguiente",
+      "previous": "Anterior",
+      "home": "Inicio",
+      "logout": "Cerrar sesión",
+      "login": "Iniciar sesión",
+      "exit": "Salir",
+      "continue": "Continuar",
+      "confirm": "Confirmar",
+      "close": "Cerrar",
+      "view": "Ver",
+      "update": "Actualizar",
+      "startBuilding": "Comenzar a construir"
+    },
+    "labels": {
+      "loading": "Cargando...",
+      "searching": "Buscando...",
+      "saving": "Guardando...",
+      "deleting": "Eliminando...",
+      "processing": "Procesando...",
+      "noData": "No hay datos disponibles",
+      "notFound": "No encontrado",
+      "error": "Error",
+      "success": "Éxito",
+      "warning": "Advertencia",
+      "info": "Información",
+      "yes": "Sí",
+      "no": "No",
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "unknown": "Desconocido",
+      "na": "N/D",
+      "page": "Página",
+      "of": "de",
+      "member": "Miembro",
+      "status": "Estado"
+    },
+    "keyboard": {
+      "enter": "ENTER",
+      "f3": "F3",
+      "f7": "F7",
+      "f8": "F8",
+      "enterSubmit": "ENTER = Enviar",
+      "enterContinue": "ENTER = Continuar",
+      "enterSearch": "ENTER = Buscar",
+      "enterSignIn": "ENTER = Iniciar sesión",
+      "f3Back": "F3 = Atrás",
+      "f3Exit": "F3 = Salir",
+      "f7Backward": "F7 = Retroceder",
+      "f8Forward": "F8 = Adelantar",
+      "fullNav": "ENTER = Continuar • F3 = Atrás • F7 = Retroceder • F8 = Adelantar"
+    },
+    "messages": {
+      "confirmExit": "¿Está seguro de que desea salir del sistema?",
+      "pleaseWait": "Por favor espere...",
+      "redirecting": "Redirigiendo...",
+      "alreadySignedIn": "Ya ha iniciado sesión. Redirigiendo a su panel."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "Ingrese su ID de usuario y contraseña, luego presione ENTER:",
+      "userIdLabel": "ID de usuario",
+      "userIdMaxLength": "(Máx. 8 caracteres)",
+      "passwordLabel": "Contraseña",
+      "signingIn": "Iniciando sesión...",
+      "viewDocs": "Ver documentación",
+      "sampleCredentials": "Credenciales de ejemplo:",
+      "adminCreds": "Admin: ADMIN001 / PASSWORD",
+      "userCreds": "Back-Office: USER001 / PASSWORD",
+      "bankNote1": "NOTA DE RESERVA NACIONAL",
+      "bankNote2": "LOS ESTADOS UNIDOS DE KICSLAND"
+    },
+    "errors": {
+      "userIdRequired": "Por favor ingrese su ID de usuario.",
+      "userIdMaxLength": "El ID de usuario debe tener 8 caracteres o menos.",
+      "passwordRequired": "Por favor ingrese su contraseña.",
+      "passwordMaxLength": "La contraseña debe tener 8 caracteres o menos.",
+      "correctErrors": "Por favor corrija los errores arriba.",
+      "incorrectCredentials": "Credenciales incorrectas. Intente de nuevo.",
+      "userNotFound": "Usuario no encontrado. Verifique su ID.",
+      "checkCredentials": "Verifique su ID de usuario y contraseña.",
+      "connectionError": "No se pudo verificar las credenciales. Revise su conexión."
+    }
+  },
+  "home": {
+    "title": "Aplicación SPA React",
+    "readyTitle": "Aplicación lista para desarrollo",
+    "readyDescription": "SPA limpia con React 18.3.1, React Router v6, Redux Toolkit, Material-UI y MSW configurados para usuarios autenticados.",
+    "techStackTitle": "Stack tecnológico configurado"
+  },
+  "menu": {
+    "main": {
+      "title": "Menú Principal",
+      "viewAccount": "Ver Cuenta",
+      "updateAccount": "Actualizar Cuenta",
+      "listCards": "Listar Tarjetas",
+      "listTransactions": "Listar Transacciones",
+      "addTransaction": "Agregar Transacción",
+      "viewTransaction": "Ver Transacción",
+      "transactionReports": "Reportes de Transacciones",
+      "billPayment": "Pago de Facturas"
+    },
+    "admin": {
+      "title": "Menú Administrativo",
+      "userManagement": "Gestión de Usuarios",
+      "addUser": "Agregar Usuario",
+      "updateUser": "Actualizar Usuario",
+      "deleteUser": "Eliminar Usuario",
+      "listUsers": "Listar Usuarios",
+      "systemSettings": "Configuración del Sistema"
+    }
+  },
+  "account": {
+    "view": {
+      "title": "CardDemo - Visor de Cuentas",
+      "subtitle": "Ver detalles de la cuenta",
+      "pageTitle": "Ver Cuenta",
+      "accountNumber": "Número de cuenta:",
+      "showTestAccounts": "Mostrar cuentas de prueba",
+      "hideTestAccounts": "Ocultar cuentas de prueba",
+      "testAccountsTitle": "Cuentas de prueba (solo desarrollo)",
+      "showSensitiveData": "Mostrar datos sensibles",
+      "hideSensitiveData": "Ocultar datos sensibles",
+      "accountInfo": "Información de la cuenta",
+      "financialInfo": "Información financiera",
+      "customerOverview": "Resumen del cliente",
+      "contactInfo": "Contacto e información personal",
+      "opened": "Apertura:",
+      "expiry": "Vencimiento:",
+      "reissue": "Reemisión:",
+      "accountGroup": "Grupo de cuentas:",
+      "cardNumber": "Número de tarjeta:",
+      "creditLimit": "Límite de crédito:",
+      "cashCreditLimit": "Límite de crédito en efectivo:",
+      "currentBalance": "Saldo actual:",
+      "currentCycleCredit": "Crédito del ciclo actual:",
+      "currentCycleDebit": "Débito del ciclo actual:",
+      "customerId": "ID del cliente:",
+      "ssn": "SSN:",
+      "dateOfBirth": "Fecha de nacimiento:",
+      "ficoScore": "Puntaje FICO:",
+      "primaryCardHolder": "Titular principal:",
+      "fullName": "Nombre completo",
+      "phone1": "Teléfono 1:",
+      "phone2": "Teléfono 2:",
+      "governmentId": "ID gubernamental:",
+      "eftAccountId": "ID de cuenta EFT:",
+      "address": "Dirección",
+      "streetAddress": "Dirección:",
+      "city": "Ciudad:",
+      "state": "Estado:",
+      "zipCode": "Código postal:",
+      "country": "País:",
+      "testAccount1": "Activa - John Smith - Premium",
+      "testAccount2": "Inactiva - Jane Doe - Estándar",
+      "testAccount3": "Alto saldo - Robert Johnson - Platino",
+      "testAccount4": "Cuenta nueva - Maria Garcia - Básica"
+    },
+    "update": {
+      "title": "Actualizar cuenta",
+      "subtitle": "Modificar información de la cuenta"
+    },
+    "errors": {
+      "accountNotProvided": "Número de cuenta no proporcionado",
+      "accountInvalid": "El número de cuenta debe ser un número de 11 dígitos distinto de cero"
+    }
+  },
+  "creditCard": {
+    "list": {
+      "title": "Tarjetas de crédito",
+      "subtitle": "Listar todas las tarjetas",
+      "addCard": "Agregar tarjeta",
+      "cardNumber": "Número de tarjeta",
+      "cardHolder": "Titular",
+      "expiryDate": "Fecha de vencimiento",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "view": {
+      "title": "Detalles de la tarjeta",
+      "subtitle": "Ver información de la tarjeta"
+    },
+    "update": {
+      "title": "Actualizar tarjeta",
+      "subtitle": "Modificar información de la tarjeta"
+    }
+  },
+  "transaction": {
+    "list": {
+      "title": "Listar transacciones",
+      "subtitle": "CardDemo - Gestión de transacciones",
+      "pageTitle": "Buscar transacción",
+      "searchLabel": "Buscar ID de transacción",
+      "searchHelper": "Ingrese el ID numérico de transacción",
+      "searchPlaceholder": "Ingrese ID de transacción",
+      "selHeader": "Sel",
+      "transactionIdHeader": "ID de transacción",
+      "dateHeader": "Fecha",
+      "descriptionHeader": "Descripción",
+      "amountHeader": "Monto",
+      "loadingTransactions": "Cargando transacciones...",
+      "noTransactions": "No se encontraron transacciones",
+      "viewDetails": "Ver detalles",
+      "selectionPlaceholder": "S",
+      "selectionInstructions": "Escriba 'S' para ver los detalles de la transacción desde la lista"
+    },
+    "view": {
+      "title": "Detalles de transacción",
+      "subtitle": "Ver información de transacción"
+    },
+    "add": {
+      "title": "Agregar transacción",
+      "subtitle": "Crear nueva transacción"
+    },
+    "reports": {
+      "title": "Reportes de transacciones",
+      "subtitle": "Ver análisis e informes"
+    }
+  },
+  "user": {
+    "list": {
+      "title": "Lista de usuarios",
+      "subtitle": "Gestionar usuarios",
+      "userId": "ID de usuario",
+      "userName": "Nombre",
+      "role": "Rol",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "add": {
+      "title": "Agregar usuario",
+      "subtitle": "Crear nuevo usuario"
+    },
+    "update": {
+      "title": "Actualizar usuario",
+      "subtitle": "Modificar información del usuario"
+    },
+    "delete": {
+      "title": "Eliminar usuario",
+      "subtitle": "Quitar usuario del sistema",
+      "confirmMessage": "¿Está seguro de que desea eliminar este usuario?"
+    }
+  },
+  "billPayment": {
+    "title": "Pago de facturas",
+    "subtitle": "Paga tus facturas"
+  },
+  "notFound": {
+    "title": "404 - Página no encontrada",
+    "message": "La página que busca no existe.",
+    "goHome": "Ir al inicio"
+  },
+  "header": {
+    "home": "Inicio",
+    "logout": "Cerrar sesión"
+  }
+}
