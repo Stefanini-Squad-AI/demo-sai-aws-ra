@@ -99,6 +99,11 @@ docs/
 
 > O conteúdo original estava em espanhol para atender ao DS3A-5; esta versão apresenta os mesmos itens traduzidos para o português brasileiro.
 
+## 🌍 Idiomas
+
+- **Português-BR (original)**: [README_DOCUMENTACION-pt-BR.md](README_DOCUMENTACION-pt-BR.md), [README-pt-BR.md](README-pt-BR.md), [README_DOCUMENTACION_NUEVA-pt-BR.md](README_DOCUMENTACION_NUEVA-pt-BR.md), [system-overview-pt-BR.md](system-overview-pt-BR.md), [docs/site/index-pt-BR.html](docs/site/index-pt-BR.html), [docs/site/modules/accounts/index-pt-BR.html](docs/site/modules/accounts/index-pt-BR.html)
+- **Español**: [README_DOCUMENTACION.md](README_DOCUMENTACION.md), [README.md](README.md), [README_DOCUMENTACION_NUEVA.md](README_DOCUMENTACION_NUEVA.md), [docs/system-overview.md](docs/system-overview.md), [docs/site/index.html](docs/site/index.html), [docs/site/modules/accounts/index.html](docs/site/modules/accounts/index.html)
+
 ## 📊 Estatísticas finais
 
 | Métrica | Valor |

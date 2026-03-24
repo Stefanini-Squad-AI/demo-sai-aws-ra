@@ -32,6 +32,11 @@ cat docs/system-overview.md
 code docs/system-overview.md
 ```
 
+## 🌍 Idiomas disponíveis
+
+- **Português-BR (original)**: [README-pt-BR.md](README-pt-BR.md), [README_DOCUMENTACION-pt-BR.md](README_DOCUMENTACION-pt-BR.md), [README_DOCUMENTACION_NUEVA-pt-BR.md](README_DOCUMENTACION_NUEVA-pt-BR.md), [system-overview-pt-BR.md](system-overview-pt-BR.md), [docs/site/index-pt-BR.html](docs/site/index-pt-BR.html), [docs/site/modules/accounts/index-pt-BR.html](docs/site/modules/accounts/index-pt-BR.html), [docs/site/modules/auth/index-pt-BR.html](docs/site/modules/auth/index-pt-BR.html)
+- **Español**: [README.md](README.md), [README_DOCUMENTACION.md](README_DOCUMENTACION.md), [README_DOCUMENTACION_NUEVA.md](README_DOCUMENTACION_NUEVA.md), [docs/system-overview.md](docs/system-overview.md), [docs/site/index.html](docs/site/index.html), [docs/site/modules/accounts/index.html](docs/site/modules/accounts/index.html), [docs/site/modules/auth/index.html](docs/site/modules/auth/index.html)
+
 ## 📖 O que está incluído
 
 ### 1. Visão Geral do Sistema (`system-overview.md`)

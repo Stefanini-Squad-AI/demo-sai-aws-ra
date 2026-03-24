@@ -120,6 +120,11 @@ docs/
 - [x] Regras de negócio e critérios de aceitação definidos
 - [x] Documentação em português seguindo o template
 
+## 🌍 Idiomas
+
+- **Português-BR (original)**: [README_DOCUMENTACION_NUEVA-pt-BR.md](README_DOCUMENTACION_NUEVA-pt-BR.md), [README-pt-BR.md](README-pt-BR.md), [system-overview-pt-BR.md](system-overview-pt-BR.md), [docs/site/index-pt-BR.html](docs/site/index-pt-BR.html), [docs/site/modules/accounts/index-pt-BR.html](docs/site/modules/accounts/index-pt-BR.html), [docs/site/modules/auth/index-pt-BR.html](docs/site/modules/auth/index-pt-BR.html)
+- **Español**: [README_DOCUMENTACION_NUEVA.md](README_DOCUMENTACION_NUEVA.md), [README.md](README.md), [docs/system-overview.md](docs/system-overview.md), [docs/site/index.html](docs/site/index.html), [docs/site/modules/accounts/index.html](docs/site/modules/accounts/index.html), [docs/site/modules/auth/index.html](docs/site/modules/auth/index.html)
+
 ---
 
 **Versão**: 1.0 - Primeira Iteração  

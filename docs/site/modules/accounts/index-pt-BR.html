@@ -21,6 +21,32 @@
             margin-bottom: 30px;
         }
         .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .language-switch {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .language-switch__link {
+            padding: 0.35rem 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .language-switch__link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+        .language-switch__link.active {
+            background: white;
+            color: #667eea;
+            border-color: rgba(0, 0, 0, 0.15);
+        }
         .section {
             background: white;
             margin: 20px 0;
@@ -102,6 +128,10 @@
             <h1>📦 Módulo de Contas (Accounts)</h1>
             <p style="font-size: 1.2em; opacity: 0.95;">Guia de Desenvolvimento de User Stories</p>
             <p style="margin-top: 10px;"><strong>Propósito:</strong> Gestão completa do ciclo de vida das contas de cartões de crédito, incluindo visualização financeira e atualização transacional dos dados pessoais dos clientes</p>
+            <div class="language-switch" aria-label="Alternar idioma">
+                <a href="index.html" class="language-switch__link" aria-label="Versão em espanhol">Español (original)</a>
+                <a href="index-pt-BR.html" class="language-switch__link active" aria-current="page">Português (pt-BR)</a>
+            </div>
         </header>
 
         <section class="section">
