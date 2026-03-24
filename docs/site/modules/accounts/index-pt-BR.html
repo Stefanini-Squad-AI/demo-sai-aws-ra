@@ -124,7 +124,7 @@
             <div class="grid">
                 <div class="card">
                     <h4>Visualização de Contas</h4>
-                    <p><strong>Patrón:</strong> Como [representante de atendimento], quero [consultar dados] para [atender clientes]</p>
+                    <p><strong>Padrão:</strong> Como [representante de atendimento], quero [consultar dados] para [atender clientes]</p>
                     <div class="us-example">
                         <strong>Exemplo:</strong> Como representante de atendimento, quero buscar uma conta pelo ID de 11 dígitos para visualizar o estado financeiro completo e responder dúvidas do titular
                     </div>
@@ -132,7 +132,7 @@
                 
                 <div class="card">
                     <h4>Atualização de Contas</h4>
-                    <p><strong>Patrón:</strong> Como [administrador], quero [alterar parâmetros] para [ajustar condições]</p>
+                    <p><strong>Padrão:</strong> Como [administrador], quero [alterar parâmetros] para [ajustar condições]</p>
                     <div class="us-example">
                         <strong>Exemplo:</strong> Como administrador de contas, quero atualizar o limite de crédito para refletir a melhora no score FICO do cliente
                     </div>
@@ -140,7 +140,7 @@
                 
                 <div class="card">
                     <h4>Validação e Segurança</h4>
-                    <p><strong>Patrón:</strong> Como [usuário], quero [validações automáticas] para [evitar erros]</p>
+                    <p><strong>Padrão:</strong> Como [usuário], quero [validações automáticas] para [evitar erros]</p>
                     <div class="us-example">
                         <strong>Exemplo:</strong> Como oficial de compliance, quero que o SSN seja sempre exibido mascarado para atender às normas PCI-DSS
                     </div>
@@ -176,38 +176,38 @@
             <div class="grid">
                 <div class="card">
                     <h4>AccountViewScreen.tsx</h4>
-                    <p><strong>Responsabilidad:</strong> Tela de busca e visualização de contas com 4 cards de informação</p>
-                    <p><strong>Reusabilidad:</strong> Funções de mascaramento (maskSSN, maskCard) exportáveis para outros módulos</p>
+                    <p><strong>Responsabilidade:</strong> Tela de busca e visualização de contas com 4 cards de informação</p>
+                    <p><strong>Reutilização:</strong> Funções de mascaramento (maskSSN, maskCard) exportáveis para outros módulos</p>
                 </div>
                 <div class="card">
                     <h4>AccountUpdateScreen.tsx</h4>
-                    <p><strong>Responsabilidad:</strong> Edição com modo toggle, confirmação de salvamento e detecção de alterações</p>
-                    <p><strong>Reusabilidad:</strong> Padrão de toggle edit mode aplicável a qualquer formulário</p>
+                    <p><strong>Responsabilidade:</strong> Edição com modo toggle, confirmação de salvamento e detecção de alterações</p>
+                    <p><strong>Reutilização:</strong> Padrão de toggle edit mode aplicável a qualquer formulário</p>
                 </div>
                 <div class="card">
                     <h4>useAccountView.ts</h4>
-                    <p><strong>Responsabilidad:</strong> Hook de busca com validação inline e gerenciamento de estados (loading/error/data)</p>
-                    <p><strong>Reusabilidad:</strong> Modelo para criar hooks de busca em outros módulos</p>
+                    <p><strong>Responsabilidade:</strong> Hook de busca com validação inline e gerenciamento de estados (loading/error/data)</p>
+                    <p><strong>Reutilização:</strong> Modelo para criar hooks de busca em outros módulos</p>
                 </div>
                 <div class="card">
                     <h4>useAccountUpdate.ts</h4>
-                    <p><strong>Responsabilidad:</strong> Hook de atualização com detecção automática de alterações</p>
-                    <p><strong>Reusabilidad:</strong> Lógica reutilizável de comparação JSON</p>
+                    <p><strong>Responsabilidade:</strong> Hook de atualização com detecção automática de alterações</p>
+                    <p><strong>Reutilização:</strong> Lógica reutilizável de comparação JSON</p>
                 </div>
                 <div class="card">
                     <h4>AccountViewService.java</h4>
-                    <p><strong>Responsabilidad:</strong> Busca multi-entidade (CardXref → Account → Customer) com mascaramento de SSN</p>
-                    <p><strong>Reusabilidad:</strong> Padrão de leitura de três entidades relacionadas</p>
+                    <p><strong>Responsabilidade:</strong> Busca multi-entidade (CardXref → Account → Customer) com mascaramento de SSN</p>
+                    <p><strong>Reutilização:</strong> Padrão de leitura de três entidades relacionadas</p>
                 </div>
                 <div class="card">
                     <h4>AccountUpdateService.java</h4>
-                    <p><strong>Responsabilidad:</strong> Atualização transacional atômica de Account + Customer</p>
-                    <p><strong>Reusabilidad:</strong> Padrão @Transactional para operações multi-entidade</p>
+                    <p><strong>Responsabilidade:</strong> Atualização transacional atômica de Account + Customer</p>
+                    <p><strong>Reutilização:</strong> Padrão @Transactional para operações multi-entidade</p>
                 </div>
                 <div class="card">
                     <h4>AccountValidationService.java</h4>
-                    <p><strong>Responsabilidad:</strong> Validações de negócio centralizadas (FICO, ZIP, nomes, etc.)</p>
-                    <p><strong>Reusabilidad:</strong> Métodos reutilizáveis (isValidAccountId, validateYesNo, etc.)</p>
+                    <p><strong>Responsabilidade:</strong> Validações de negócio centralizadas (FICO, ZIP, nomes, etc.)</p>
+                    <p><strong>Reutilização:</strong> Métodos reutilizáveis (isValidAccountId, validateYesNo, etc.)</p>
                 </div>
             </div>
 
@@ -477,7 +477,7 @@ public class AccountUpdateService {
 
         <footer>
             <p><a href="../../index.html">← Voltar ao Índice de Módulos</a></p>
-            <p><a href="../../../system-overview.md">🏠 Voltar ao System Overview</a></p>
+            <p><a href="../../../system-overview-pt-BR.md">🏠 Voltar ao System Overview</a></p>
             <p style="color: #666; margin-top: 15px;"><em>Última atualização: 2026-01-21 | Precisão do módulo: 95%</em></p>
         </footer>
     </div>

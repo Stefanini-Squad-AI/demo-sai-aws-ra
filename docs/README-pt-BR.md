@@ -5,31 +5,43 @@
 ```
 docs/
 ├── system-overview.md              # 🎯 Fonte única da verdade (98% de precisão)
+├── system-overview-pt-BR.md        # 🎯 Versão em Português-BR
 └── site/
-    ├── index.html                  # 🏠 Página principal navegável
+    ├── index.html                  # 🏠 Página principal em espanhol/inglês
+    ├── index-pt-BR.html            # 🏠 Página principal em Português-BR
     └── modules/
         └── accounts/
-            └── index.html          # 📦 Guia detalhado do módulo Cuentas
+            ├── index.html          # 📦 Guia detalhado do módulo Contas (español)
+            └── index-pt-BR.html    # 📦 Guia detalhado do módulo Contas (pt-BR)
 ```
 
 ## 🚀 Início Rápido
 
 ### Opção 1: Abrir a documentação HTML (recomendado)
 ```bash
-# Abra o hub principal no navegador
+# Abra o hub principal em Português-BR
+open docs/site/index-pt-BR.html
+
+# (Opcional) Versão original em espanhol/inglês
 open docs/site/index.html
 
-# Ou navegue diretamente para o módulo de contas
+# Navegue diretamente para o módulo de Contas em Português
+open docs/site/modules/accounts/index-pt-BR.html
+
+# (Opcional) Versão original do módulo
 open docs/site/modules/accounts/index.html
 ```
 
 ### Opção 2: Ler Markdown
 ```bash
-# Visualize a visão geral do sistema
+# Visualize a visão geral do sistema em Português
+cat docs/system-overview-pt-BR.md
+
+# (Opcional) Versão original em espanhol
 cat docs/system-overview.md
 
-# Ou use seu editor favorito
-code docs/system-overview.md
+# Ou use seu editor favorito no arquivo em português
+code docs/system-overview-pt-BR.md
 ```
 
 ## 📖 O que está incluído
@@ -125,13 +137,14 @@ PUT  /api/accounts/{accountId}             - atualização de conta e cliente
 
 ## 📈 Próximos passos
 
-1. **Product Owners**: use `system-overview.md` para gerar backlog
-2. **Desenvolvedores**: consulte `site/modules/accounts/index.html` para padrões
+1. **Product Owners**: use `system-overview-pt-BR.md` para gerar backlog
+2. **Desenvolvedores**: consulte `site/modules/accounts/index-pt-BR.html` para padrões
 3. **QA**: baseie casos de teste nos critérios de aceitação
 4. **Arquitetos**: cheque os fundamentos técnicos e modelos de dados
 
 ## 🔗 Documentação relacionada
 - [README principal](../README.md) - setup e quick start
+- [README em Português](../README-pt-BR.md) - visão geral em PT-BR
 - [Guia de deployment](deployment.md) - quando existir
 - [Modelo de dados](data-model.md) - quando existir
 - [Swagger UI](http://localhost:8080/swagger-ui.html) - com backend rodando

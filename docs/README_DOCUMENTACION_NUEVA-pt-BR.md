@@ -20,6 +20,14 @@ Esta é a **primeira iteração** da documentação do Sistema SAI, focada em of
    - Links rápidos para seções do `system-overview.md`
    - Design responsivo e moderno
 
+3. **`docs/system-overview-pt-BR.md`** (42KB, 1626 linhas)
+   - Versão em Português-BR da visão geral
+   - Mantém todas as seções técnicas do original
+
+4. **`docs/site/index-pt-BR.html`** (17KB)
+   - Versão em Português-BR do hub principal
+   - Reflete os mesmos módulos, estatísticas e links do original
+
 ### 📊 Conteúdo documentado
 
 #### Módulos do sistema (9 módulos)
@@ -75,10 +83,14 @@ Esta é a **primeira iteração** da documentação do Sistema SAI, focada em of
 ```
 docs/
  system-overview.md          # 📄 Documentação completa (42KB)
+ system-overview-pt-BR.md    # 📄 Versão em Português-BR
  site/
    ├── index.html             # 🏠 Página principal navegável
+   ├── index-pt-BR.html       # 🏠 Página principal em Português-BR
    └── modules/
        └── accounts/          # (conteúdo pré-existente)
+           ├── index.html     # 🏷️ Módulo em espanhol
+           └── index-pt-BR.html # 🏷️ Módulo em Português-BR
 ```
 
 ### Próximas etapas (DS3A-10)
@@ -91,19 +103,19 @@ docs/
 ### 📖 Como usar
 
 #### Para Product Owners:
-1. Ler `docs/system-overview.md` para compreender o sistema completo
+1. Ler `docs/system-overview-pt-BR.md` para compreender o sistema completo
 2. Usar templates por domínio para desenhar epics
 3. Aplicar guias de complexidade nas estimativas
 4. Reutilizar critérios de aceitação nos critérios da sprint
 
 #### Para Desenvolvedores:
-1. Identificar-se com os módulos em `system-overview.md`
+1. Identificar-se com os módulos em `system-overview-pt-BR.md`
 2. Consultar APIs com exemplos antes de implementar
 3. Seguir padrões reais (MUI, Redux, hooks)
 4. Checar regras de negócio antes de codar validações
 
 #### Para acesso web:
-- Abrir `docs/site/index.html`
+- Abrir `docs/site/index-pt-BR.html`
 - Navegar usando os links para cada seção
 - Visualizar estatísticas e módulos rapidamente
 

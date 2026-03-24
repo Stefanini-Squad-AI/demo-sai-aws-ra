@@ -5,13 +5,16 @@
 ```
 docs/
  system-overview.md              # 🎯 Fonte única da verdade (716 linhas, 95% de precisão)
+ system-overview-pt-BR.md        # 🎯 Versão em PT-BR desse conteúdo
  README_DOCUMENTACION.md         # Este arquivo em espanhol
  README_DOCUMENTACION-pt-BR.md  # Esta versão em português
  site/
-    ├── index.html                  # 🏠 Página principal navegável (7KB)
+    ├── index.html                  # 🏠 Página principal navegável (7KB, espanhol)
+    ├── index-pt-BR.html            # 🏠 Página principal em Português-BR
     └── modules/
         └── accounts/
-            └── index.html          # Página HTML do módulo (23KB)
+            ├── index.html          # Página HTML do módulo (23KB, espanhol)
+            └── index-pt-BR.html    # Página HTML do módulo (23KB, Português-BR)
 ```
 
 ## ✅ Conteúdo revisado
@@ -52,6 +55,8 @@ docs/
 - ✅ Stack tecnológico (Backend, Frontend, padrões)
 - ✅ Badges de recursos e footer com data/precisão
 
+As traduções em Português-BR estão disponíveis em `docs/site/index-pt-BR.html`.
+
 ### 3. `site/modules/accounts/index.html`
 **Tamanho**: 23KB | **Idioma**: espanhol original
 
@@ -75,6 +80,8 @@ docs/
 - ✅ Badges coloridos por complexidade
 - ✅ Tabela responsiva com cabeçalhos coloridos
 - ✅ Navegação com links de retorno
+
+O equivalente em Português-BR está em `docs/site/modules/accounts/index-pt-BR.html`.
 
 ## 🎯 Conformidade com o template solicitado
 
@@ -117,13 +124,13 @@ docs/
 ## 🚀 Como usar
 
 ### Para Product Owners / Analistas
-1. Abrir `docs/site/index.html` no navegador
-2. Navegar até o módulo de Contas
+1. Abrir `docs/site/index-pt-BR.html` no navegador (versão em Português-BR)
+2. Navegar até o módulo de Contas em `docs/site/modules/accounts/index-pt-BR.html`
 3. Revisar templates de User Stories e complexidade
 4. Usar os critérios de aceitação como base para testes
 
 ### Para Desenvolvedores
-1. Ler `docs/system-overview.md` para contexto geral
+1. Ler `docs/system-overview-pt-BR.md` para contexto geral
 2. Consultar os padrões de formulários e APIs antes de codar
 3. Verificar regras de negócio e dependências antes de implementar
 4. Usar os exemplos de código como referência
@@ -148,9 +155,12 @@ docs/
 4. **Otimizar**: criar índices PostgreSQL (TASK-016)
 
 ## 🔗 Links rápidos
-- **System Overview**: `docs/system-overview.md`
-- **Site principal**: `docs/site/index.html`
-- **Módulo Contas**: `docs/site/modules/accounts/index.html`
+- **System Overview (PT-BR)**: `docs/system-overview-pt-BR.md`
+- **System Overview (original)**: `docs/system-overview.md`
+- **Site principal (PT-BR)**: `docs/site/index-pt-BR.html`
+- **Site principal (original)**: `docs/site/index.html`
+- **Módulo Contas (PT-BR)**: `docs/site/modules/accounts/index-pt-BR.html`
+- **Módulo Contas (original)**: `docs/site/modules/accounts/index.html`
 - **Frontend**: `frontend/app/components/account/`
 - **Backend**: `management/src/main/java/com/card/management/`
 
