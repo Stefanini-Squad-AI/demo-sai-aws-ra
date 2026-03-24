@@ -1,7 +1,7 @@
 export interface MenuOption {
   id: string;
-  label: string;
-  description?: string;
+  labelKey: string;
+  descriptionKey?: string;
   path?: string;
   action?: string;
   disabled?: boolean;
@@ -10,8 +10,8 @@ export interface MenuOption {
 }
 
 export interface MenuData {
-  title: string;
-  subtitle?: string;
+  titleKey: string;
+  subtitleKey?: string;
   transactionId: string;
   programName: string;
   userRole: 'admin' | 'back-office';

@@ -101,25 +101,54 @@
     "techStackTitle": "Tech Stack Configured"
   },
   "menu": {
+    "common": {
+      "selectOption": "Select an option",
+      "adminBadge": "Admin"
+    },
+    "errors": {
+      "processing": "There was an error processing that option. Please try again."
+    },
     "main": {
       "title": "Main Menu",
+      "subtitle": "System Back-Office Functions",
       "viewAccount": "View Account",
       "updateAccount": "Update Account",
       "listCards": "List Credit Cards",
+      "viewCard": "View Card",
+      "updateCard": "Update Card",
       "listTransactions": "List Transactions",
       "addTransaction": "Add Transaction",
       "viewTransaction": "View Transaction",
       "transactionReports": "Transaction Reports",
-      "billPayment": "Bill Payment"
+      "billPayment": "Bill Payment",
+      "descriptions": {
+        "viewAccount": "Review account and customer information.",
+        "updateAccount": "Adjust account-level controls and status.",
+        "listCards": "Display every credit card tied to the account.",
+        "viewCard": "Inspect details for a single card.",
+        "updateCard": "Modify card settings or limits.",
+        "listTransactions": "Browse the ledger of recent transactions.",
+        "viewTransaction": "Open a specific transaction detail.",
+        "addTransaction": "Create a new transaction record.",
+        "transactionReports": "Produce reports and analytics.",
+        "billPayment": "Process payments for the selected account."
+      }
     },
     "admin": {
       "title": "Admin Menu",
+      "subtitle": "Security and administration functions",
       "userManagement": "User Management",
       "addUser": "Add User",
       "updateUser": "Update User",
       "deleteUser": "Delete User",
       "listUsers": "List Users",
-      "systemSettings": "System Settings"
+      "systemSettings": "System Settings",
+      "descriptions": {
+        "listUsers": "Browse the list of system users.",
+        "addUser": "Add new credentials and assign roles.",
+        "updateUser": "Update user roles or profile details.",
+        "deleteUser": "Revoke access by deleting a user."
+      }
     }
   },
   "account": {

@@ -29,6 +29,7 @@ import { SystemHeader } from '~/components/layout/SystemHeader';
 import { useAppDispatch } from '~/store/hooks';
 import { logoutUser } from '~/features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import type { MenuData, MenuOption } from '~/types/menu';
 
 interface MenuScreenProps {
@@ -49,8 +50,11 @@ export function MenuScreen({
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [selectedInput, setSelectedInput] = useState('');
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+  const localizedTitle = t(menuData.titleKey);
+  const localizedSubtitle = menuData.subtitleKey ? t(menuData.subtitleKey) : undefined;
 
   const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -98,8 +102,8 @@ export function MenuScreen({
         <SystemHeader
           transactionId={menuData.transactionId}
           programName={menuData.programName}
-          title={menuData.title}
-          subtitle={menuData.subtitle || undefined}
+          title={localizedTitle}
+          subtitle={localizedSubtitle}
         />
 
         <Paper
@@ -120,12 +124,12 @@ export function MenuScreen({
             }}
           >
             <Typography variant="h5" fontWeight={600}>
-              {menuData.title.includes('Admin') ? (
+              {menuData.userRole === 'admin' ? (
                 <AdminPanelSettings sx={{ mr: 1, verticalAlign: 'middle' }} />
               ) : (
                 <Dashboard sx={{ mr: 1, verticalAlign: 'middle' }} />
               )}
-              Select an Option
+              {t('menu.common.selectOption')}
             </Typography>
           </Box>
 
@@ -170,8 +174,8 @@ export function MenuScreen({
                     </ListItemIcon>
                     
                     <ListItemText
-                      primary={option.label}
-                      secondary={option.description}
+                      primary={t(option.labelKey)}
+                      secondary={option.descriptionKey ? t(option.descriptionKey) : undefined}
                       primaryTypographyProps={{
                         fontWeight: 500,
                         color: option.disabled ? 'text.disabled' : 'text.primary',
@@ -184,7 +188,7 @@ export function MenuScreen({
                     
                     {option.adminOnly && (
                       <Chip
-                        label="Admin"
+                        label={t('menu.common.adminBadge')}
                         size="small"
                         color="warning"
                         variant="outlined"

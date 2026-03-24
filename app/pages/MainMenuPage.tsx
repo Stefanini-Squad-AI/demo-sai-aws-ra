@@ -31,7 +31,7 @@ export default function MainMenuPage() {
 
   const { loading, error, handleOptionSelect, handleExit } = useMenu({
     onError: (error) => console.error('Main menu error:', error),
-    onSuccess: (option) => console.log('Option selected:', option.label),
+    onSuccess: (option) => console.log('Option selected:', option.labelKey),
   });
 
   if (!menuData) {
