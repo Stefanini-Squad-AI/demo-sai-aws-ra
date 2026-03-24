@@ -303,15 +303,15 @@
         </section>
 
         <section class="us-guide">
-            <h2>🎯 Guía de Desarrollo de User Stories</h2>
+            <h2>🎯 Guia de Desenvolvimento de User Stories</h2>
             
-            <h3>📝 Plantillas Específicas de US</h3>
+            <h3>📝 Templates Específicos de User Stories</h3>
             
             <div class="us-template">
                 <strong>Login de Usuário</strong>
                 <p>Como <em>usuário do sistema</em>, quero <em>fazer login com minhas credenciais</em> para <em>acessar as funcionalidades conforme meu papel</em></p>
                 <div class="criteria">
-                    <strong>Criterios de Aceitação:</strong>
+                    <strong>Critérios de Aceitação:</strong>
                     <ul>
                         <li>O formulário mostra campos para User ID e Password</li>
                         <li>Os campos aceitam no máximo 8 caracteres</li>
@@ -329,7 +329,7 @@
                 <strong>Proteção de Rotas por Papel</strong>
                 <p>Como <em>administrador do sistema</em>, quero <em>que as rotas sejam protegidas conforme papéis</em> para <em>garantir que os usuários acessem apenas funções autorizadas</em></p>
                 <div class="criteria">
-                    <strong>Criterios de Aceitação:</strong>
+                    <strong>Critérios de Aceitação:</strong>
                     <ul>
                         <li>As rotas exigem autenticação para acesso</li>
                         <li>Verifica-se o papel do usuário nas rotas restritas</li>
@@ -345,7 +345,7 @@
                 <strong>Gestão Segura de Sessão</strong>
                 <p>Como <em>usuário autenticado</em>, quero <em>que minha sessão expire automaticamente após inatividade</em> para <em>proteger minha conta contra acessos não autorizados</em></p>
                 <div class="criteria">
-                    <strong>Criterios de Aceitação:</strong>
+                    <strong>Critérios de Aceitação:</strong>
                     <ul>
                         <li>A sessão dura no máximo 8 horas</li>
                         <li>Verifica-se a expiração a cada 5 minutos</li>
@@ -362,7 +362,7 @@
                 <strong>Renovação Automática de Token</strong>
                 <p>Como <em>sistema</em>, quero <em>renovar automaticamente os tokens de acesso</em> para <em>manter a sessão ativa sem interrupções</em></p>
                 <div class="criteria">
-                    <strong>Criterios de Aceitação:</strong>
+                    <strong>Critérios de Aceitação:</strong>
                     <ul>
                         <li>O token renova a cada 5 minutos enquanto a sessão estiver ativa</li>
                         <li>Utiliza o refresh token para obter novo access token</li>
@@ -391,14 +391,14 @@
             <div class="component-card">
                 <h4>🎣 useSecureSession Hook</h4>
                 <p><strong>Reutilização:</strong> Hook com toda a lógica de gestão de sessão</p>
-                <p><strong>Métodos disponibles:</strong></p>
+                <p><strong>Métodos disponíveis:</strong></p>
                 <ul>
                     <li><code>checkSessionExpiry()</code> - Verificar se a sessão está ativa</li>
                     <li><code>attemptTokenRefresh()</code> - Renovar token manualmente</li>
                     <li><code>clearSession()</code> - Limpar sessão e redirecionar</li>
                     <li><code>performImmediateLogout()</code> - Logout imediato</li>
                 </ul>
-                <p><strong>Aceleración:</strong> Gestión completa de sesión con una línea</p>
+                <p><strong>Aceleração:</strong> Gestão completa de sessão com uma única linha</p>
             </div>
 
             <div class="component-card">
@@ -441,7 +441,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span class="complexity-badge simple">Simple</span></td>
+                        <td><span class="complexity-badge simple">Simples</span></td>
                         <td>1-2 pts</td>
                         <td>
                             • Adicionar nova validação de campo<br>
@@ -451,7 +451,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><span class="complexity-badge medium">Medio</span></td>
+                        <td><span class="complexity-badge medium">Médio</span></td>
                         <td>3-5 pts</td>
                         <td>
                             • Implementar novo método de autenticação<br>
@@ -461,7 +461,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><span class="complexity-badge complex">Complejo</span></td>
+                        <td><span class="complexity-badge complex">Complexo</span></td>
                         <td>5-8 pts</td>
                         <td>
                             • Implementar autenticação multi-fator (2FA)<br>
@@ -556,7 +556,7 @@
             </div>
 
             <div class="warning">
-                <strong>Módulos que dependen de AUTH:</strong>
+                <strong>Módulos que dependem de AUTH:</strong>
                 <ul>
                     <li><strong>Account:</strong> Requer autenticação para operações</li>
                     <li><strong>Credit Card:</strong> Requer autenticação e papel</li>
@@ -598,7 +598,7 @@
 
             <h4>POST /auth/logout</h4>
             <div class="code-block">
-// Request: No body (usa token en header)
+// Request: Sem body (token no header)
 
 // Response (200 OK)
 {
@@ -685,13 +685,13 @@
                         <td><code>ADMIN001</code></td>
                         <td><code>PASSWORD</code></td>
                         <td>Admin</td>
-                        <td>Acceso completo al sistema</td>
+                        <td>Acesso completo ao sistema</td>
                     </tr>
                     <tr>
                         <td><code>USER001</code></td>
                         <td><code>PASSWORD</code></td>
                         <td>Back-office</td>
-                        <td>Acceso limitado a funciones operativas</td>
+                        <td>Acesso limitado às funções operacionais</td>
                     </tr>
                 </tbody>
             </table>
@@ -736,7 +736,7 @@
         </section>
 
         <footer>
-            <p><a href="../../index.html" class="back-link">← Voltar ao Índice</a></p>
+            <p><a href="../../index-pt-BR.html" class="back-link">← Voltar ao Índice</a></p>
             <p><strong>Módulo AUTH - Autenticação e Autorização</strong></p>
             <p><em>Última atualização: 2026-01-26</em></p>
             <p><em>Mantido por: Equipe DS3A</em></p>
