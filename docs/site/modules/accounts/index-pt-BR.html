@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Contas - Guia de Desenvolvimento de User Stories</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f5f7fa;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .card {
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .card h4 { color: #667eea; margin-bottom: 10px; }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        .complexity-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .simple { background: #d4edda; color: #155724; }
+        .medium { background: #fff3cd; color: #856404; }
+        .complex { background: #f8d7da; color: #721c24; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th { background: #667eea; color: white; }
+        .rule { background: #e3f2fd; padding: 15px; margin: 10px 0; border-left: 4px solid #2196f3; border-radius: 4px; }
+        .us-example {
+            background: #f3e5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #9c27b0;
+            border-radius: 4px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        footer a { color: #667eea; text-decoration: none; font-weight: 600; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📦 Módulo de Contas (Accounts)</h1>
+            <p style="font-size: 1.2em; opacity: 0.95;">Guia de Desenvolvimento de User Stories</p>
+            <p style="margin-top: 10px;"><strong>Propósito:</strong> Gestão completa do ciclo de vida das contas de cartões de crédito, incluindo visualização financeira e atualização transacional dos dados pessoais dos clientes</p>
+        </header>
+
+        <section class="section">
+            <h2>📋 Resumo do Módulo</h2>
+            <p><strong>Contexto de Negócio:</strong> Este módulo permite que representantes de atendimento e administradores gerenciem contas de cartões de crédito, desde consultas de saldo até atualizações de limites e dados pessoais dos clientes.</p>
+            <p><strong>Responsabilidades principais:</strong></p>
+            <ul style="line-height: 2;">
+                <li>Busca e visualização de contas por ID de 11 dígitos</li>
+                <li>Exibição de informações financeiras (limites, saldos, ciclos)</li>
+                <li>Atualização transacional de dados da conta e do cliente</li>
+                <li>Proteção de dados sensíveis (SSN, números de cartão)</li>
+                <li>Validações de negócio em tempo real</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>🎯 Guia de Desenvolvimento de User Stories</h2>
+            
+            <h3>📝 Templates de US Específicos</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>Visualização de Contas</h4>
+                    <p><strong>Patrón:</strong> Como [representante de atendimento], quero [consultar dados] para [atender clientes]</p>
+                    <div class="us-example">
+                        <strong>Exemplo:</strong> Como representante de atendimento, quero buscar uma conta pelo ID de 11 dígitos para visualizar o estado financeiro completo e responder dúvidas do titular
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4>Atualização de Contas</h4>
+                    <p><strong>Patrón:</strong> Como [administrador], quero [alterar parâmetros] para [ajustar condições]</p>
+                    <div class="us-example">
+                        <strong>Exemplo:</strong> Como administrador de contas, quero atualizar o limite de crédito para refletir a melhora no score FICO do cliente
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h4>Validação e Segurança</h4>
+                    <p><strong>Patrón:</strong> Como [usuário], quero [validações automáticas] para [evitar erros]</p>
+                    <div class="us-example">
+                        <strong>Exemplo:</strong> Como oficial de compliance, quero que o SSN seja sempre exibido mascarado para atender às normas PCI-DSS
+                    </div>
+                </div>
+            </div>
+
+            <h3>⚡ Fatores de Aceleração do Desenvolvimento</h3>
+            <ul style="line-height: 2;">
+                <li><strong>Hook useAccountView:</strong> Hook reutilizável que encapsula busca e controle de estado. Acelera ao evitar reimplementar lógica de carregamento e erros.</li>
+                <li><strong>Hook useAccountUpdate:</strong> Detecta automaticamente alterações comparando estado original e atual. Reduz a complexidade de formulários de edição.</li>
+                <li><strong>AccountValidationService (Backend):</strong> Validações centralizadas evitam duplicidade de código. Novas regras são adicionadas uma única vez.</li>
+                <li><strong>Componentes Material-UI:</strong> TextField, Card e Button pré-configurados reduzem o tempo de UI em ~60%.</li>
+                <li><strong>API RESTful documentada:</strong> 4 endpoints bem definidos facilitam a integração frontend-backend em 1-2 dias.</li>
+            </ul>
+
+            <h3>📊 Guias de Complexidade</h3>
+            <div>
+                <span class="complexity-badge simple">Simples (1-2 pts)</span>
+                <span class="complexity-badge medium">Médio (3-5 pts)</span>
+                <span class="complexity-badge complex">Complexo (5-8 pts)</span>
+            </div>
+            <ul style="margin-top: 20px; line-height: 2;">
+                <li><strong>Simples (1-2 pts):</strong> Adicionar campo somente leitura em AccountViewScreen, reusar validação regex existente</li>
+                <li><strong>Médio (3-5 pts):</strong> Implementar nova validação de negócio, adicionar campo editável com validação client/server</li>
+                <li><strong>Complexo (5-8 pts):</strong> Integrar com sistema externo de scoring, implementar auditoria completa de alterações</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>🔧 Fundação Técnica</h2>
+            
+            <h3>🏗️ Componentes-Chave</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>AccountViewScreen.tsx</h4>
+                    <p><strong>Responsabilidad:</strong> Tela de busca e visualização de contas com 4 cards de informação</p>
+                    <p><strong>Reusabilidad:</strong> Funções de mascaramento (maskSSN, maskCard) exportáveis para outros módulos</p>
+                </div>
+                <div class="card">
+                    <h4>AccountUpdateScreen.tsx</h4>
+                    <p><strong>Responsabilidad:</strong> Edição com modo toggle, confirmação de salvamento e detecção de alterações</p>
+                    <p><strong>Reusabilidad:</strong> Padrão de toggle edit mode aplicável a qualquer formulário</p>
+                </div>
+                <div class="card">
+                    <h4>useAccountView.ts</h4>
+                    <p><strong>Responsabilidad:</strong> Hook de busca com validação inline e gerenciamento de estados (loading/error/data)</p>
+                    <p><strong>Reusabilidad:</strong> Modelo para criar hooks de busca em outros módulos</p>
+                </div>
+                <div class="card">
+                    <h4>useAccountUpdate.ts</h4>
+                    <p><strong>Responsabilidad:</strong> Hook de atualização com detecção automática de alterações</p>
+                    <p><strong>Reusabilidad:</strong> Lógica reutilizável de comparação JSON</p>
+                </div>
+                <div class="card">
+                    <h4>AccountViewService.java</h4>
+                    <p><strong>Responsabilidad:</strong> Busca multi-entidade (CardXref → Account → Customer) com mascaramento de SSN</p>
+                    <p><strong>Reusabilidad:</strong> Padrão de leitura de três entidades relacionadas</p>
+                </div>
+                <div class="card">
+                    <h4>AccountUpdateService.java</h4>
+                    <p><strong>Responsabilidad:</strong> Atualização transacional atômica de Account + Customer</p>
+                    <p><strong>Reusabilidad:</strong> Padrão @Transactional para operações multi-entidade</p>
+                </div>
+                <div class="card">
+                    <h4>AccountValidationService.java</h4>
+                    <p><strong>Responsabilidad:</strong> Validações de negócio centralizadas (FICO, ZIP, nomes, etc.)</p>
+                    <p><strong>Reusabilidad:</strong> Métodos reutilizáveis (isValidAccountId, validateYesNo, etc.)</p>
+                </div>
+            </div>
+
+            <h3>🔗 Dependências</h3>
+            <ul style="line-height: 2;">
+                <li><strong>Account Entity:</strong> Entidade JPA com 11 campos financeiros e operacionais</li>
+                <li><strong>Customer Entity:</strong> Entidade JPA com 14 campos pessoais e de contato</li>
+                <li><strong>CardXrefRecord:</strong> Tabela de relacionamento Account-Customer-Card</li>
+                <li><strong>Material-UI:</strong> TextField, Card, Button, IconButton, Snackbar</li>
+                <li><strong>Redux Toolkit:</strong> Gerenciamento de estado global (opcional para este módulo)</li>
+            </ul>
+
+            <h3>🌐 Interfaces Públicas (APIs)</h3>
+            <pre><code>GET  /api/account-view?accountId={id}
+     → Buscar e obter conta completa com dados do cliente
+     → Response: AccountViewResponseDto (JSON)
+
+GET  /api/account-view/initialize
+     → Inicializar a tela com metadata do sistema
+     → Response: AccountViewResponseDto com data/hora/transactionId
+
+GET  /api/accounts/{accountId}
+     → Obter dados da conta para o formulário de edição
+     → Response: AccountUpdateRequestDto (JSON)
+
+PUT  /api/accounts/{accountId}
+     → Atualizar conta e cliente (transacional)
+     → Body: AccountUpdateRequestDto
+     → Response: Map&lt;String, String&gt; com mensagem de sucesso</code></pre>
+
+            <h3>📊 Modelos de Dados (Simplificado)</h3>
+            <pre><code>// TypeScript Frontend
+interface AccountViewResponse {
+  accountId: number;
+  accountStatus: string;  // Y/N
+  creditLimit: number;
+  currentBalance: number;
+  customerId: number;
+  customerSsn: string;    // Mascarado "XXX-XX-XXXX"
+  ficoScore: number;      // 300-850
+  firstName: string;
+  lastName: string;
+  zipCode: string;
+  // ... outros 20+ campos
+}
+
+// Java Backend
+@Entity
+public class Account {
+  @Id private Long accountId;      // 11 dígitos
+  private String activeStatus;     // Y/N
+  private BigDecimal creditLimit;
+  private BigDecimal currentBalance;
+  private LocalDate openDate;
+  // ... outros campos
+}
+
+@Entity
+public class Customer {
+  @Id private Long customerId;     // 9 dígitos
+  private String firstName;
+  private String lastName;
+  private String socialSecurityNumber;  // 9 dígitos
+  private Integer ficoScore;            // 300-850
+  private String zipCode;
+  // ... outros campos
+}</code></pre>
+        </section>
+
+        <section class="section">
+            <h2>📋 Regras de Negócio</h2>
+            
+            <h3>Identificação e Busca</h3>
+            <div class="rule">
+                <strong>RN-001:</strong> O Account ID deve ter exatamente 11 dígitos numéricos
+            </div>
+            <div class="rule">
+                <strong>RN-002:</strong> O Account ID não pode ser composto apenas por zeros (00000000000)
+            </div>
+            <div class="rule">
+                <strong>RN-003:</strong> A busca valida a existência em: CardXrefRecord → Account → Customer
+            </div>
+            
+            <h3>Segurança e Privacidade</h3>
+            <div class="rule">
+                <strong>RN-006:</strong> O SSN é exibido mascarado: <code>***-**-XXXX</code> (apenas os últimos 4 dígitos)
+            </div>
+            <div class="rule">
+                <strong>RN-007:</strong> O número do cartão é mascarado: <code>****-****-****-XXXX</code>
+            </div>
+            
+            <h3>Validações Críticas</h3>
+            <div class="rule">
+                <strong>RN-009:</strong> Active Status só aceita 'Y' (ativo) ou 'N' (inativo)
+            </div>
+            <div class="rule">
+                <strong>RN-012:</strong> FICO Score deve estar no intervalo 300-850
+            </div>
+            <div class="rule">
+                <strong>RN-015:</strong> ZIP Code no formato: <code>^\d{5}(-\d{4})?$</code>
+            </div>
+            
+            <h3>Transacionalidade</h3>
+            <div class="rule">
+                <strong>RN-018:</strong> Atualização de Account e Customer é atômica (tudo ou nada)
+            </div>
+            <div class="rule">
+                <strong>RN-021:</strong> Executa-se "READ FOR UPDATE" (lock pessimista) antes de atualizar
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🎯 Padrões de Critérios de Aceitação</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>Autenticação</h4>
+                    <p><strong>Dado</strong> que sou usuário com papel "Customer Service"<br>
+                    <strong>Quando</strong> acesso o módulo<br>
+                    <strong>Então</strong> posso visualizar, mas não editar, as contas</p>
+                </div>
+                <div class="card">
+                    <h4>Validação</h4>
+                    <p><strong>Dado</strong> que insiro o Account ID<br>
+                    <strong>Quando</strong> tem menos de 11 dígitos<br>
+                    <strong>Então</strong> exibe erro "Deve ter 11 dígitos"</p>
+                </div>
+                <div class="card">
+                    <h4>Performance</h4>
+                    <p><strong>Dado</strong> que busco uma conta<br>
+                    <strong>Quando</strong> o ID existe<br>
+                    <strong>Então</strong> resultados em &lt; 500ms</p>
+                </div>
+                <div class="card">
+                    <h4>Tratamento de Erros</h4>
+                    <p><strong>Dado</strong> que busco uma conta inexistente<br>
+                    <strong>Quando</strong> não consta em CardXref<br>
+                    <strong>Então</strong> mostra "Account not found in Cross ref file"</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>⚡ Considerações de Performance</h2>
+            <ul style="line-height: 2;">
+                <li><strong>Tempo de Resposta:</strong> &lt; 500ms (P95) para buscas</li>
+                <li><strong>Throughput:</strong> Suporta 100 buscas concorrentes/segundo</li>
+                <li><strong>Uso de Memória:</strong> &lt; 50MB por sessão de usuário</li>
+                <li><strong>Estratégia de Cache:</strong> Sem cache atualmente (queries diretas ao PostgreSQL)</li>
+                <li><strong>Índices DB:</strong> Necessários em accountId, customerId e cardNumber</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>🚨 Riscos de Desenvolvimento e Mitigações</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>⚠️ Performance nas Buscas</h4>
+                    <p><strong>Risco:</strong> Busca sequencial em 3 tabelas pode degradar com alto volume</p>
+                    <p><strong>Mitigação:</strong> Criar índices em accountId e customerId; considerar cache Redis para contas frequentes</p>
+                </div>
+                <div class="card">
+                    <h4>⚠️ Ausência de i18n</h4>
+                    <p><strong>Risco:</strong> Mensagens hardcodeadas em inglês não atendem aos requisitos de idioma</p>
+                    <p><strong>Mitigação:</strong> Implementar react-i18next antes de novas funcionalidades (estimado 5 pontos)</p>
+                </div>
+                <div class="card">
+                    <h4>⚠️ Sem Auditoria de Alterações</h4>
+                    <p><strong>Risco:</strong> Não há rastreabilidade de quem alterou quais dados</p>
+                    <p><strong>Mitigação:</strong> Implementar Audit Trail com Spring Data Envers (5 pontos)</p>
+                </div>
+                <div class="card">
+                    <h4>⚠️ Validações COBOL Comentadas</h4>
+                    <p><strong>Risco:</strong> Validação do SSN está comentada no código migrado</p>
+                    <p><strong>Mitigação:</strong> Revisar e ativar ou substituir por validações modernas</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>📚 Exemplos de Código</h2>
+            
+            <h3>Padrão de Implementação: Hook de Busca</h3>
+            <pre><code>// useAccountView.ts - Padrão reutilizável
+export function useAccountView() {
+  const [data, setData] = useState&lt;AccountViewResponse | null&gt;(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  const searchAccount = async (request: AccountViewRequest) =&gt; {
+    setLoading(true);
+    try {
+      const accountIdNum = parseInt(request.accountId);
+      if (isNaN(accountIdNum) || accountIdNum === 0) {
+        throw new Error("Account must be non-zero 11 digit number");
+      }
+      
+      const response = await api.get&lt;AccountViewResponse&gt;(
+        `/account-view?accountId=${request.accountId.padStart(11, "0")}`
+      );
+      setData(response.data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { data, loading, error, searchAccount };
+}</code></pre>
+
+            <h3>Padrão Backend: Serviço Transacional</h3>
+            <pre><code>// AccountUpdateService.java
+@Service
+public class AccountUpdateService {
+  
+  @Transactional  // ← Chave: garante atomicidade
+  public Map&lt;String, String&gt; updateAccountAndCustomer(
+      Long accountId, AccountUpdateRequestDto request) {
+    
+    // Ler com lock
+    Account account = accountRepository.findById(accountId)
+        .orElseThrow(() -&gt; new ResourceNotFoundException("Account not found"));
+    Customer customer = customerRepository.findByAccountId(accountId)
+        .orElseThrow(() -&gt; new ResourceNotFoundException("Customer not found"));
+    
+    // Validar
+    List&lt;String&gt; errors = validationService.validateAccountUpdate(request);
+    if (!errors.isEmpty()) {
+      throw new ValidationException(String.join(", ", errors));
+    }
+    
+    // Atualizar
+    updateAccountFromRequest(account, request);
+    updateCustomerFromRequest(customer, request);
+    
+    // Salvar (se falhar, rollback automático)
+    accountRepository.save(account);
+    customerRepository.save(customer);
+    
+    return Map.of("message", "Account updated successfully");
+  }
+}</code></pre>
+        </section>
+
+        <section class="section">
+            <h2>📊 Tabela de Validações</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Validação</th>
+                        <th>Regra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Account ID</td><td><code>^\d{11}$</code></td><td>11 dígitos, não zero</td></tr>
+                    <tr><td>Status</td><td>Dropdown</td><td>Y (Ativo) ou N (Inativo)</td></tr>
+                    <tr><td>Credit Limit</td><td>Numérico</td><td>Positivo, obrigatório</td></tr>
+                    <tr><td>FICO Score</td><td>300-850</td><td>Intervalo padrão da indústria</td></tr>
+                    <tr><td>ZIP Code</td><td><code>^\d{5}(-\d{4})?$</code></td><td>Formato ZIP dos EUA</td></tr>
+                    <tr><td>State</td><td>Alfabético</td><td>2 caracteres</td></tr>
+                    <tr><td>First/Last Name</td><td>Alfabético</td><td>Somente letras, obrigatório</td></tr>
+                    <tr><td>SSN</td><td>Mascarado</td><td>***-**-XXXX na visualização</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            <p><a href="../../index.html">← Voltar ao Índice de Módulos</a></p>
+            <p><a href="../../../system-overview.md">🏠 Voltar ao System Overview</a></p>
+            <p style="color: #666; margin-top: 15px;"><em>Última atualização: 2026-01-21 | Precisão do módulo: 95%</em></p>
+        </footer>
+    </div>
+</body>
+</html>

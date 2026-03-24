@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 AUTH - Guia de Desenvolvimento de User Stories</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .overview {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .overview h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .overview p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .overview strong {
+            color: #667eea;
+        }
+        
+        section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: #5568d3;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+        
+        h4 {
+            color: #764ba2;
+            margin: 1rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .us-template {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .us-template strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .us-template p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .criteria {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        
+        .criteria li {
+            color: #2c5282;
+        }
+        
+        .criteria li:before {
+            content: "✅ ";
+            color: #48bb78;
+            font-weight: bold;
+        }
+        
+        .complexity-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+        
+        .simple {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .medium {
+            background: #feebc8;
+            color: #7c2d12;
+        }
+        
+        .complex {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+        
+        .component-card {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .component-card h4 {
+            margin-top: 0;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .info {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #f1f5f9;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8fafc;
+        }
+        
+        .back-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 2rem;
+            transition: background 0.2s;
+        }
+        
+        .back-link:hover {
+            background: #5568d3;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            background: white;
+            margin-top: 2rem;
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔐 AUTH - Autenticação e Autorização</h1>
+            <p class="subtitle">Guia de Desenvolvimento de User Stories</p>
+        </header>
+
+        <section class="overview">
+            <h2>📋 Visão Geral</h2>
+            <p><strong>Propósito:</strong> O módulo AUTH é o núcleo de segurança do CardDemo. Gerencia autenticação, autorização por papéis e segurança de sessões.</p>
+            <p><strong>Contexto de Negócio:</strong> Garante controle de acesso seguro para usuários admins e de back-office, certificando que cada papel acesse apenas as funcionalidades permitidas.</p>
+            <p><strong>Localização do código:</strong></p>
+            <ul>
+                <li><code>/app/features/auth/authSlice.ts</code> - Gerenciamento de estado (Redux)</li>
+                <li><code>/app/services/authApi.ts</code> - Serviços de API</li>
+                <li><code>/app/components/auth/ProtectedRoute.tsx</code> - Proteção de rotas</li>
+                <li><code>/app/hooks/useSecureSession.ts</code> - Gestão de sessão</li>
+                <li><code>/app/pages/LoginPage.tsx</code> - Página de login</li>
+            </ul>
+        </section>
+
+        <section class="us-guide">
+            <h2>🎯 Guía de Desarrollo de User Stories</h2>
+            
+            <h3>📝 Plantillas Específicas de US</h3>
+            
+            <div class="us-template">
+                <strong>Login de Usuário</strong>
+                <p>Como <em>usuário do sistema</em>, quero <em>fazer login com minhas credenciais</em> para <em>acessar as funcionalidades conforme meu papel</em></p>
+                <div class="criteria">
+                    <strong>Criterios de Aceitação:</strong>
+                    <ul>
+                        <li>O formulário mostra campos para User ID e Password</li>
+                        <li>Os campos aceitam no máximo 8 caracteres</li>
+                        <li>O texto é convertido automaticamente para maiúsculas</li>
+                        <li>Valida-se que os campos estejam preenchidos antes do envio</li>
+                        <li>Exibe mensagem de erro se as credenciais forem inválidas</li>
+                        <li>Após login bem-sucedido, redireciona conforme o papel</li>
+                        <li>Tokens são armazenados com segurança no localStorage</li>
+                    </ul>
+                </div>
+                <span class="complexity-badge simple">Simples (1-2 pts)</span>
+            </div>
+
+            <div class="us-template">
+                <strong>Proteção de Rotas por Papel</strong>
+                <p>Como <em>administrador do sistema</em>, quero <em>que as rotas sejam protegidas conforme papéis</em> para <em>garantir que os usuários acessem apenas funções autorizadas</em></p>
+                <div class="criteria">
+                    <strong>Criterios de Aceitação:</strong>
+                    <ul>
+                        <li>As rotas exigem autenticação para acesso</li>
+                        <li>Verifica-se o papel do usuário nas rotas restritas</li>
+                        <li>Usuários não autenticados redirecionados ao login</li>
+                        <li>Usuários com papel incorreto enviados ao menu certo</li>
+                        <li>Pergunta-se a URL destino para redirecionar após o login</li>
+                    </ul>
+                </div>
+                <span class="complexity-badge medium">Médio (3 pts)</span>
+            </div>
+
+            <div class="us-template">
+                <strong>Gestão Segura de Sessão</strong>
+                <p>Como <em>usuário autenticado</em>, quero <em>que minha sessão expire automaticamente após inatividade</em> para <em>proteger minha conta contra acessos não autorizados</em></p>
+                <div class="criteria">
+                    <strong>Criterios de Aceitação:</strong>
+                    <ul>
+                        <li>A sessão dura no máximo 8 horas</li>
+                        <li>Verifica-se a expiração a cada 5 minutos</li>
+                        <li>O token renova automaticamente se estiver próximo de expirar</li>
+                        <li>Ao expirar, ocorre logout automático</li>
+                        <li>Informações são limpas ao fechar janela/aba</li>
+                        <li>Verifica-se a sessão ao alternar a visibilidade da aba</li>
+                    </ul>
+                </div>
+                <span class="complexity-badge medium">Médio (3-5 pts)</span>
+            </div>
+
+            <div class="us-template">
+                <strong>Renovação Automática de Token</strong>
+                <p>Como <em>sistema</em>, quero <em>renovar automaticamente os tokens de acesso</em> para <em>manter a sessão ativa sem interrupções</em></p>
+                <div class="criteria">
+                    <strong>Criterios de Aceitação:</strong>
+                    <ul>
+                        <li>O token renova a cada 5 minutos enquanto a sessão estiver ativa</li>
+                        <li>Utiliza o refresh token para obter novo access token</li>
+                        <li>Se a renovação falhar, ocorre logout automático</li>
+                        <li>A renovação não interrompe a experiência do usuário</li>
+                        <li>O novo token substitui o anterior no localStorage</li>
+                    </ul>
+                </div>
+                <span class="complexity-badge medium">Médio (3-5 pts)</span>
+            </div>
+
+            <h3>⚡ Fatores de Aceleração do Desenvolvimento</h3>
+            
+            <div class="component-card">
+                <h4>🔧 ProtectedRoute Component</h4>
+                <p><strong>Reutilização:</strong> Componente pronto para proteger qualquer rota</p>
+                <p><strong>Uso típico:</strong></p>
+                <div class="code-block">
+&lt;ProtectedRoute requiredRole="admin"&gt;
+  &lt;AdminPage /&gt;
+&lt;/ProtectedRoute&gt;
+                </div>
+                <p><strong>Aceleração:</strong> Proteção de rotas sem escrever lógica adicional</p>
+            </div>
+
+            <div class="component-card">
+                <h4>🎣 useSecureSession Hook</h4>
+                <p><strong>Reutilização:</strong> Hook com toda a lógica de gestão de sessão</p>
+                <p><strong>Métodos disponibles:</strong></p>
+                <ul>
+                    <li><code>checkSessionExpiry()</code> - Verificar se a sessão está ativa</li>
+                    <li><code>attemptTokenRefresh()</code> - Renovar token manualmente</li>
+                    <li><code>clearSession()</code> - Limpar sessão e redirecionar</li>
+                    <li><code>performImmediateLogout()</code> - Logout imediato</li>
+                </ul>
+                <p><strong>Aceleración:</strong> Gestión completa de sesión con una línea</p>
+            </div>
+
+            <div class="component-card">
+                <h4>📦 authSlice (Redux)</h4>
+                <p><strong>Reutilização:</strong> Redux slice completo com todas as ações</p>
+                <p><strong>Ações disponíveis:</strong></p>
+                <ul>
+                    <li><code>loginUser</code> - Autenticar usuário</li>
+                    <li><code>logoutUser</code> - Encerrar sessão</li>
+                    <li><code>refreshToken</code> - Renovar access token</li>
+                    <li><code>validateToken</code> - Validar token JWT</li>
+                    <li><code>immediateLogout</code> - Logout sem confirmação</li>
+                </ul>
+                <p><strong>Aceleração:</strong> Estado global de auth totalmente gerenciado</p>
+            </div>
+
+            <div class="component-card">
+                <h4>🌐 authApi Service</h4>
+                <p><strong>Reutilização:</strong> Serviço com todos os endpoints de autenticação</p>
+                <p><strong>Endpoints:</strong></p>
+                <ul>
+                    <li><code>POST /auth/login</code> - Login</li>
+                    <li><code>POST /auth/logout</code> - Logout</li>
+                    <li><code>POST /auth/refresh</code> - Renovar token</li>
+                    <li><code>POST /auth/validate</code> - Validar token</li>
+                    <li><code>GET /auth/health</code> - Health check</li>
+                </ul>
+                <p><strong>Aceleração:</strong> API client configurado e tipado</p>
+            </div>
+
+            <h3>📊 Guias de Complexidade</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Complexidade</th>
+                        <th>Pontos</th>
+                        <th>Exemplos em AUTH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="complexity-badge simple">Simple</span></td>
+                        <td>1-2 pts</td>
+                        <td>
+                            • Adicionar nova validação de campo<br>
+                            • Alterar mensagem de erro<br>
+                            • Ajustar redirecionamento pós-login<br>
+                            • Regular duração da sessão
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="complexity-badge medium">Medio</span></td>
+                        <td>3-5 pts</td>
+                        <td>
+                            • Implementar novo método de autenticação<br>
+                            • Ajustar fluxo de renovação de tokens<br>
+                            • Incluir recurso "Remember me"<br>
+                            • Adicionar validação biométrica básica
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="complexity-badge complex">Complejo</span></td>
+                        <td>5-8 pts</td>
+                        <td>
+                            • Implementar autenticação multi-fator (2FA)<br>
+                            • Integração com SSO (Single Sign-On)<br>
+                            • Migrar para OAuth 2.0<br>
+                            • Implementar autenticação sem senha<br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="technical">
+            <h2>🔧 Fundamentos Técnicos</h2>
+            
+            <h3>🏗️ Componentes-Chave</h3>
+            
+            <div class="component-card">
+                <h4>authSlice.ts</h4>
+                <p><strong>Localização:</strong> <code>/app/features/auth/authSlice.ts</code></p>
+                <p><strong>Responsabilidade:</strong> Gerenciar o estado de autenticação no Redux</p>
+                <p><strong>Estado gerenciado:</strong></p>
+                <ul>
+                    <li><code>user</code> - Usuário autenticado atual</li>
+                    <li><code>token</code> - Access token JWT</li>
+                    <li><code>isAuthenticated</code> - Estado de autenticado</li>
+                    <li><code>isLoading</code> - Indicador de carregamento</li>
+                    <li><code>error</code> - Erros de autenticação</li>
+                </ul>
+            </div>
+
+            <div class="component-card">
+                <h4>authApi.ts</h4>
+                <p><strong>Localização:</strong> <code>/app/services/authApi.ts</code></p>
+                <p><strong>Responsabilidade:</strong> Comunicação com endpoints de autenticação</p>
+                <p><strong>Tipos definidos:</strong></p>
+                <ul>
+                    <li><code>AuthResponse</code> - Resposta do login</li>
+                    <li><code>TokenValidationResponse</code> - Resposta de validação</li>
+                </ul>
+            </div>
+
+            <div class="component-card">
+                <h4>ProtectedRoute.tsx</h4>
+                <p><strong>Localização:</strong> <code>/app/components/auth/ProtectedRoute.tsx</code></p>
+                <p><strong>Responsabilidade:</strong> Proteger rotas segundo autenticação e papéis</p>
+                <p><strong>Props:</strong></p>
+                <ul>
+                    <li><code>children</code> - Componente a proteger</li>
+                    <li><code>requiredRole</code> (opcional) - Papel requerido: 'admin' | 'back-office'</li>
+                </ul>
+            </div>
+
+            <div class="component-card">
+                <h4>useSecureSession.ts</h4>
+                <p><strong>Localização:</strong> <code>/app/hooks/useSecureSession.ts</code></p>
+                <p><strong>Responsabilidade:</strong> Gestão segura de sessão com validações automáticas</p>
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li>Verificação de expiração (máx. 8 horas)</li>
+                    <li>Renovação automática a cada 5 minutos</li>
+                    <li>Limpeza ao fechar janela</li>
+                    <li>Validação ao alternar visibilidade da aba</li>
+                </ul>
+            </div>
+
+            <div class="component-card">
+                <h4>LoginPage.tsx</h4>
+                <p><strong>Localização:</strong> <code>/app/pages/LoginPage.tsx</code></p>
+                <p><strong>Responsabilidade:</strong> Interface do usuário para autenticação</p>
+                <p><strong>Características:</strong></p>
+                <ul>
+                    <li>Formulário com validação de campos</li>
+                    <li>Conversão automática para maiúsculas</li>
+                    <li>Limiar de 8 caracteres por campo</li>
+                    <li>Toggle de visualização da senha</li>
+                    <li>Tratamento de erros amigável</li>
+                    <li>Redirecionamento conforme o papel</li>
+                </ul>
+            </div>
+
+            <h3>🔗 Dependências</h3>
+            
+            <div class="info">
+                <strong>Dependências Internas:</strong>
+                <ul>
+                    <li><strong>Store (Redux):</strong> Para gestão de estado global</li>
+                    <li><strong>Router:</strong> Para navegação e proteção de rotas</li>
+                    <li><strong>API Client:</strong> Para comunicação com o backend</li>
+                    <li><strong>Types:</strong> Interfaces compartilhadas (User, LoginCredentials)</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>Módulos que dependen de AUTH:</strong>
+                <ul>
+                    <li><strong>Account:</strong> Requer autenticação para operações</li>
+                    <li><strong>Credit Card:</strong> Requer autenticação e papel</li>
+                    <li><strong>Transaction:</strong> Requer autenticação</li>
+                    <li><strong>User:</strong> Requer papel admin</li>
+                    <li><strong>Menu:</strong> Mostra opções conforme o papel</li>
+                    <li><strong>Bill Payment:</strong> Requer autenticação</li>
+                </ul>
+            </div>
+
+            <h3>🌐 Interfaces Públicas (APIs)</h3>
+            
+            <h4>POST /auth/login</h4>
+            <div class="code-block">
+// Request
+{
+  "userId": "ADMIN001",
+  "password": "PASSWORD"
+}
+
+// Response (200 OK)
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "refreshToken": "mock-refresh-token-ADMIN001",
+  "tokenType": "Bearer",
+  "userId": "ADMIN001",
+  "fullName": "Administrator User",
+  "userType": "A",
+  "expiresIn": 3600,
+  "message": "Login successful"
+}
+
+// Response (401 Unauthorized)
+{
+  "error": "Invalid credentials",
+  "message": "User ID or password incorrect"
+}
+            </div>
+
+            <h4>POST /auth/logout</h4>
+            <div class="code-block">
+// Request: No body (usa token en header)
+
+// Response (200 OK)
+{
+  "message": "Logout successful"
+}
+            </div>
+
+            <h4>POST /auth/refresh</h4>
+            <div class="code-block">
+// Request
+{
+  "refreshToken": "mock-refresh-token-ADMIN001"
+}
+
+// Response (200 OK)
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+            </div>
+
+            <h4>POST /auth/validate</h4>
+            <div class="code-block">
+// Request
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+
+// Response (200 OK)
+{
+  "valid": true,
+  "userId": "ADMIN001",
+  "message": "Token is valid"
+}
+            </div>
+
+            <h3>📋 Regras de Negócio</h3>
+            
+            <div class="success">
+                <h4>Autenticação</h4>
+                <ul>
+                    <li><strong>User ID:</strong> Máximo de 8 caracteres, obrigatório, convertido para maiúsculas</li>
+                    <li><strong>Password:</strong> Máximo de 8 caracteres, obrigatório, convertido para maiúsculas</li>
+                    <li><strong>Papéis:</strong> Admin (userType: 'A') ou Back-office (userType: 'U')</li>
+                    <li><strong>Tokens:</strong> Access token válido por 1 hora, refresh token válido durante a sessão</li>
+                </ul>
+            </div>
+
+            <div class="success">
+                <h4>Sessão</h4>
+                <ul>
+                    <li><strong>Duração máxima:</strong> 8 horas contínuas</li>
+                    <li><strong>Verificação:</strong> A cada 5 minutos</li>
+                    <li><strong>Renovação:</strong> Automática se o token estiver próximo de expirar</li>
+                    <li><strong>Expiração:</strong> Logout automático após 8 horas ou ao fechar a janela</li>
+                </ul>
+            </div>
+
+            <div class="success">
+                <h4>Autorização</h4>
+                <ul>
+                    <li><strong>Rotas protegidas:</strong> Requerem autenticação</li>
+                    <li><strong>Rotas por papel:</strong> Verificam o papel específico</li>
+                    <li><strong>Redirecionamento:</strong> Admin → /menu/admin, Back-office → /menu/main</li>
+                    <li><strong>Sem acesso:</strong> Redireciona ao login ou ao menu correspondente</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="testing">
+            <h2>🧪 Testes e Dados de Teste</h2>
+            
+            <h3>Usuários de Teste (Mock Data)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Password</th>
+                        <th>Papel</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>ADMIN001</code></td>
+                        <td><code>PASSWORD</code></td>
+                        <td>Admin</td>
+                        <td>Acceso completo al sistema</td>
+                    </tr>
+                    <tr>
+                        <td><code>USER001</code></td>
+                        <td><code>PASSWORD</code></td>
+                        <td>Back-office</td>
+                        <td>Acceso limitado a funciones operativas</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info">
+                <strong>Mock Handlers:</strong> Localizados em <code>/app/mocks/authHandlers.ts</code>
+                <ul>
+                    <li>Login bem-sucedido retorna tokens válidos</li>
+                    <li>Logout sempre bem-sucedido</li>
+                    <li>Refresh gera novo access token</li>
+                    <li>Validate verifica a estrutura básica do token</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="security">
+            <h2>🔒 Considerações de Segurança</h2>
+            
+            <div class="success">
+                <h3>✅ Boas Práticas Implementadas</h3>
+                <ul>
+                    <li><strong>Armazenamento seguro:</strong> Tokens no localStorage com limpeza total ao logout</li>
+                    <li><strong>Validação contínua:</strong> Verificação de token em cada rota protegida</li>
+                    <li><strong>Expiração automática:</strong> Sessões expiram depois de 8 horas</li>
+                    <li><strong>Renovação automática:</strong> Tokens renovam a cada 5 minutos</li>
+                    <li><strong>Logout imediato:</strong> Se o token for inválido ou expirar</li>
+                    <li><strong>Limpeza ao fechar:</strong> SessionStorage limpo ao fechar a janela</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <h3>⚠️ Melhorias Futuras (Tech Debt)</h3>
+                <ul>
+                    <li><strong>Cookies HttpOnly:</strong> Migrar tokens para cookies HttpOnly para maior segurança</li>
+                    <li><strong>Proteção CSRF:</strong> Implementar tokens CSRF</li>
+                    <li><strong>Rate Limiting:</strong> Limitar tentativas de login (prevenir brute force)</li>
+                    <li><strong>2FA:</strong> Autenticação de dois fatores</li>
+                    <li><strong>Biometric Auth:</strong> Autenticação biométrica para mobile</li>
+                    <li><strong>Políticas de senha:</strong> Regras mais rigorosas para senhas</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p><a href="../../index.html" class="back-link">← Voltar ao Índice</a></p>
+            <p><strong>Módulo AUTH - Autenticação e Autorização</strong></p>
+            <p><em>Última atualização: 2026-01-26</em></p>
+            <p><em>Mantido por: Equipe DS3A</em></p>
+        </footer>
+    </div>
+</body>
+</html>
