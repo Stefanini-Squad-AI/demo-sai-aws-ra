@@ -107,6 +107,17 @@ docs/
 - ✅ site/modules/accounts/index.html → Español
 - ✅ Títulos, descripciones, ejemplos, código comentado → Español
 
+## 🌍 Idiomas
+
+- **Español (original)**: [README_DOCUMENTACION.md](README_DOCUMENTACION.md), [README.md](README.md), [README_DOCUMENTACION_NUEVA.md](README_DOCUMENTACION_NUEVA.md), [docs/system-overview.md](docs/system-overview.md), [docs/site/index.html](docs/site/index.html), [docs/site/modules/accounts/index.html](docs/site/modules/accounts/index.html)
+- **Português-BR**:
+  - [README_DOCUMENTACION-pt-BR.md](README_DOCUMENTACION-pt-BR.md)
+  - [README-pt-BR.md](README-pt-BR.md)
+  - [README_DOCUMENTACION_NUEVA-pt-BR.md](README_DOCUMENTACION_NUEVA-pt-BR.md)
+  - [system-overview-pt-BR.md](system-overview-pt-BR.md)
+  - [docs/site/index-pt-BR.html](docs/site/index-pt-BR.html)
+  - [docs/site/modules/accounts/index-pt-BR.html](docs/site/modules/accounts/index-pt-BR.html)
+
 ## 📊 Estadísticas Finales
 
 | Métrica | Valor |

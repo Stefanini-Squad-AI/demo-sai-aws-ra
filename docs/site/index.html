@@ -31,10 +31,40 @@
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
-        
+
         .header p {
             font-size: 1.2rem;
             opacity: 0.9;
+        }
+
+        .language-switch {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .language-switch__link {
+            padding: 0.35rem 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .language-switch__link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .language-switch__link.active {
+            background: white;
+            color: #667eea;
+            border-color: rgba(0, 0, 0, 0.15);
         }
         
         .container {
@@ -272,6 +302,10 @@
     <header class="header">
         <h1>💳 CardDemo</h1>
         <p>Sistema de Gestión de Tarjetas y Transacciones - Documentación General</p>
+        <div class="language-switch" aria-label="Cambiar idioma">
+            <a href="index.html" class="language-switch__link active" aria-current="page">Español (original)</a>
+            <a href="index-pt-BR.html" class="language-switch__link">Português (pt-BR)</a>
+        </div>
     </header>
 
     <div class="container">
