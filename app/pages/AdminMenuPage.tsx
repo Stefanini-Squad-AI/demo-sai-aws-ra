@@ -37,7 +37,7 @@ export default function AdminMenuPage() {
 
   const { loading, error, handleOptionSelect, handleExit } = useMenu({
     onError: (error) => console.error('Admin menu error:', error),
-    onSuccess: (option) => console.log('Admin option selected:', option.label),
+    onSuccess: (option) => console.log('Admin option selected:', option.labelKey),
   });
 
   if (!menuData) {

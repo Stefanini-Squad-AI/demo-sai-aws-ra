@@ -101,25 +101,54 @@
     "techStackTitle": "Stack tecnológico configurado"
   },
   "menu": {
+    "common": {
+      "selectOption": "Seleccione una opción",
+      "adminBadge": "Admin"
+    },
+    "errors": {
+      "processing": "Hubo un error al procesar esta opción. Intenta nuevamente."
+    },
     "main": {
       "title": "Menú Principal",
+      "subtitle": "Funciones administrativas del sistema",
       "viewAccount": "Ver Cuenta",
       "updateAccount": "Actualizar Cuenta",
       "listCards": "Listar Tarjetas",
+      "viewCard": "Ver Tarjeta",
+      "updateCard": "Actualizar Tarjeta",
       "listTransactions": "Listar Transacciones",
       "addTransaction": "Agregar Transacción",
       "viewTransaction": "Ver Transacción",
       "transactionReports": "Reportes de Transacciones",
-      "billPayment": "Pago de Facturas"
+      "billPayment": "Pago de Facturas",
+      "descriptions": {
+        "viewAccount": "Revisar información de la cuenta y el cliente.",
+        "updateAccount": "Ajustar controles y estado de la cuenta.",
+        "listCards": "Mostrar todas las tarjetas vinculadas a la cuenta.",
+        "viewCard": "Ver los detalles de una tarjeta.",
+        "updateCard": "Modificar ajustes o límites de la tarjeta.",
+        "listTransactions": "Recorrer el registro de transacciones recientes.",
+        "viewTransaction": "Abrir el detalle de una transacción específica.",
+        "addTransaction": "Crear un nuevo registro de transacción.",
+        "transactionReports": "Generar informes y análisis.",
+        "billPayment": "Procesar pagos para la cuenta seleccionada."
+      }
     },
     "admin": {
       "title": "Menú Administrativo",
+      "subtitle": "Funciones de seguridad y administración",
       "userManagement": "Gestión de Usuarios",
       "addUser": "Agregar Usuario",
       "updateUser": "Actualizar Usuario",
       "deleteUser": "Eliminar Usuario",
       "listUsers": "Listar Usuarios",
-      "systemSettings": "Configuración del Sistema"
+      "systemSettings": "Configuración del Sistema",
+      "descriptions": {
+        "listUsers": "Navegar por la lista de usuarios del sistema.",
+        "addUser": "Agregar nuevas credenciales y asignar roles.",
+        "updateUser": "Actualizar roles o información del usuario.",
+        "deleteUser": "Revocar accesos eliminando a un usuario."
+      }
     }
   },
   "account": {

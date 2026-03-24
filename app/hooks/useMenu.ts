@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { logoutUser, selectCurrentUser } from '~/features/auth/authSlice';
 import type { MenuOption } from '~/types/menu';
@@ -15,6 +16,7 @@ export function useMenu(options: UseMenuOptions = {}) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
+  const { t } = useTranslation();
 
   const handleOptionSelect = useCallback(async (option: MenuOption) => {
     setLoading(true);
@@ -33,7 +35,8 @@ export function useMenu(options: UseMenuOptions = {}) {
 
       options.onSuccess?.(option);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Error al procesar la opción';
+      const errorMessage = t('menu.errors.processing');
+      console.error('Menu option error', err);
       setError(errorMessage);
       options.onError?.(errorMessage);
     } finally {

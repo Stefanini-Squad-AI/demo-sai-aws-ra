@@ -44,7 +44,9 @@ import {
 } from '@mui/icons-material';
 import { SystemHeader } from '~/components/layout/SystemHeader';
 import { LoadingSpinner } from '~/components/ui/LoadingSpinner';
+import { getCurrencyCode, getIntlLocale } from '~/utils/locale';
 import type { AccountViewRequest, AccountViewResponse } from '~/types/account';
+import type { Language } from '~/features/locale/localeSlice';
 
 interface AccountViewScreenProps {
   onSearch: (request: AccountViewRequest) => void;
@@ -61,18 +63,22 @@ export function AccountViewScreen({
   loading = false,
   error,
 }: AccountViewScreenProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const [accountId, setAccountId] = useState('');
   const [fieldError, setFieldError] = useState<string | null>(null);
   const [showSensitiveData, setShowSensitiveData] = useState(false);
   const [showTestAccounts, setShowTestAccounts] = useState(false);
+  const effectiveLanguage: Language = i18n.language === 'pt-BR' ? 'pt-BR' : 'en';
+  const locale = getIntlLocale(effectiveLanguage);
+  const currencyCode = getCurrencyCode(effectiveLanguage);
+  const notAvailableLabel = t('common.labels.na');
 
   const testAccounts = [
-    { id: '11111111111', desc: 'Active - John Smith - Premium', status: 'Active' },
-    { id: '22222222222', desc: 'Inactive - Jane Doe - Standard', status: 'Inactive' },
-    { id: '33333333333', desc: 'High Balance - Robert Johnson - Platinum', status: 'Active' },
-    { id: '44444444444', desc: 'New Account - Maria Garcia - Basic', status: 'Active' },
+    { id: '11111111111', descKey: 'account.view.testAccount1' },
+    { id: '22222222222', descKey: 'account.view.testAccount2' },
+    { id: '33333333333', descKey: 'account.view.testAccount3' },
+    { id: '44444444444', descKey: 'account.view.testAccount4' },
   ];
 
   const handleAccountIdChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,19 +121,19 @@ export function AccountViewScreen({
 
   const formatCurrency = useCallback((amount?: number) => {
     if (amount === undefined || amount === null) return '';
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat(locale, {
       style: 'currency',
-      currency: 'USD',
+      currency: currencyCode,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(amount);
-  }, []);
+  }, [locale, currencyCode]);
 
   const formatDate = useCallback((dateStr?: string) => {
     if (!dateStr) return '';
     try {
       const date = new Date(dateStr);
-      return date.toLocaleDateString('en-US', {
+      return date.toLocaleDateString(locale, {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit'
@@ -135,7 +141,7 @@ export function AccountViewScreen({
     } catch {
       return dateStr;
     }
-  }, []);
+  }, [locale]);
 
   const formatSSN = useCallback((ssn?: string) => {
     if (!ssn) return '';
@@ -162,13 +168,11 @@ export function AccountViewScreen({
     }
   };
 
-  const getStatusLabel = (status?: string) => {
-    switch (status) {
-      case 'Y': return 'Active';
-      case 'N': return 'Inactive';
-      default: return 'Unknown';
-    }
-  };
+  const getStatusLabel = useCallback((status?: string) => {
+    if (status === 'Y') return t('common.labels.active');
+    if (status === 'N') return t('common.labels.inactive');
+    return t('common.labels.unknown');
+  }, [t]);
 
   const getBalanceColor = (balance?: number) => {
     if (!balance) return 'text.primary';
@@ -203,7 +207,7 @@ export function AccountViewScreen({
           >
             <Typography variant="h5" fontWeight={600}>
               <AccountBalance sx={{ mr: 1, verticalAlign: 'middle' }} />
-              {t('account.view.heading')}
+              {t('account.view.pageTitle')}
             </Typography>
           </Box>
 
@@ -225,7 +229,7 @@ export function AccountViewScreen({
                 color="primary.main"
                 fontWeight={600}
               >
-                {t('account.view.accountNumberLabel')}
+                {t('account.view.accountNumber')}
               </Typography>
               
               <TextField
@@ -301,7 +305,7 @@ export function AccountViewScreen({
                 }}
               >
                 <Typography variant="subtitle2" gutterBottom color="info.main" fontWeight={600}>
-                  {t('account.view.testAccountsLabel')}
+                  {t('account.view.testAccountsTitle')}
                 </Typography>
                 <Grid container spacing={1}>
                   {testAccounts.map((account) => (
@@ -324,7 +328,7 @@ export function AccountViewScreen({
                             {account.id}
                           </Typography>
                           <Typography variant="caption" color="text.secondary">
-                            {account.desc}
+                            {t(account.descKey)}
                           </Typography>
                         </Box>
                       </Button>
@@ -345,7 +349,7 @@ export function AccountViewScreen({
                 />
                 {data.groupId && (
                   <Chip
-                    label={`${data.groupId} Member`}
+                    label={`${data.groupId} ${t('common.labels.member')}`}
                     variant="outlined"
                     color="primary"
                     sx={{ fontWeight: 600 }}
@@ -433,7 +437,7 @@ export function AccountViewScreen({
                               {t('account.view.accountGroup')}
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {data.groupId || 'N/A'}
+                              {data.groupId || notAvailableLabel}
                             </Typography>
                           </Box>
 
@@ -598,7 +602,7 @@ export function AccountViewScreen({
                       <CardContent>
                         <Typography variant="h6" gutterBottom color="primary.main">
                           <ContactPhone sx={{ mr: 1, verticalAlign: 'middle' }} />
-                          {t('account.view.contactPersonalInformation')}
+                          {t('account.view.contactInfo')}
                         </Typography>
                         <Divider sx={{ mb: 3 }} />
                         
@@ -622,7 +626,7 @@ export function AccountViewScreen({
                                   {t('account.view.phone1')}
                                 </Typography>
                                 <Typography variant="body1" fontWeight={500}>
-                                  {data.phoneNumber1 || 'N/A'}
+                                  {data.phoneNumber1 || notAvailableLabel}
                                 </Typography>
                               </Box>
                               
@@ -632,7 +636,7 @@ export function AccountViewScreen({
                                   {t('account.view.phone2')}
                                 </Typography>
                                 <Typography variant="body1" fontWeight={500}>
-                                  {data.phoneNumber2 || 'N/A'}
+                                  {data.phoneNumber2 || notAvailableLabel}
                                 </Typography>
                               </Box>
                             </Stack>
@@ -644,8 +648,8 @@ export function AccountViewScreen({
                                 <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
                                   {t('account.view.governmentId')}
                                 </Typography>
-                                <Typography variant="body1" fontWeight={500}>
-                                  {data.governmentId || 'N/A'}
+                                  <Typography variant="body1" fontWeight={500}>
+                                  {data.governmentId || notAvailableLabel}
                                 </Typography>
                               </Box>
                               
@@ -653,8 +657,8 @@ export function AccountViewScreen({
                                 <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
                                   {t('account.view.eftAccountId')}
                                 </Typography>
-                                <Typography variant="body1" fontWeight={500}>
-                                  {data.eftAccountId || 'N/A'}
+                                  <Typography variant="body1" fontWeight={500}>
+                                  {data.eftAccountId || notAvailableLabel}
                                 </Typography>
                               </Box>
                             </Stack>
@@ -686,7 +690,7 @@ export function AccountViewScreen({
                               {t('account.view.city')}
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {data.city || 'N/A'}
+                              {data.city || notAvailableLabel}
                             </Typography>
                           </Grid>
                           
@@ -695,7 +699,7 @@ export function AccountViewScreen({
                               {t('account.view.state')}
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {data.state || 'N/A'}
+                              {data.state || notAvailableLabel}
                             </Typography>
                           </Grid>
                           
@@ -704,7 +708,7 @@ export function AccountViewScreen({
                               {t('account.view.zipCode')}
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {data.zipCode || 'N/A'}
+                              {data.zipCode || notAvailableLabel}
                             </Typography>
                           </Grid>
                           
@@ -713,7 +717,7 @@ export function AccountViewScreen({
                               {t('account.view.country')}
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {data.country || 'N/A'}
+                              {data.country || notAvailableLabel}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -741,7 +745,7 @@ export function AccountViewScreen({
             >
               <Typography variant="body2" color="text.secondary">
                 <KeyboardReturn sx={{ fontSize: 16, mr: 0.5, verticalAlign: 'middle' }} />
-                {t('account.view.enterSearch')}
+                {t('common.keyboard.enterSearch')}
               </Typography>
               
               <Button
@@ -752,7 +756,7 @@ export function AccountViewScreen({
                 disabled={loading}
                 sx={{ borderRadius: 2 }}
               >
-                {t('account.view.f3Exit')}
+                {t('common.keyboard.f3Exit')}
               </Button>
             </Stack>
           </Box>
